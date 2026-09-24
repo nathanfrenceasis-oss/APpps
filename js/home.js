@@ -29,3 +29,19 @@ updateHomeDay();
 if ("serviceWorker" in navigator) {
     navigator.serviceWorker.register("./sw.js");
 }
+
+let installPrompt;
+
+window.addEventListener("beforeinstallprompt", event => {
+    event.preventDefault();
+    installPrompt = event;
+
+    document.getElementById("install-btn").style.display = "block";
+});
+
+document.getElementById("install-btn").addEventListener("click", async () => {
+    if (!installPrompt) return;
+
+    installPrompt.prompt();
+    installPrompt = null;
+});
