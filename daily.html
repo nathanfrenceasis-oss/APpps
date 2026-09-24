@@ -139,6 +139,32 @@ main {
     max-width: 430px;
 }
 
+    .play-btn {
+    position: relative;
+}
+
+.play-btn::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
+    border-left: 12px solid white;
+    transform: translate(-40%, -50%);
+}
+
+.play-btn.playing::before {
+    width: 5px;
+    height: 16px;
+    border: none;
+    background: white;
+    transform: translate(-7px, -50%);
+    box-shadow: 9px 0 0 white;
+}
+    
 .daily h2 {
     font-family: 'Playfair Display', serif;
     color: var(--text-main);
