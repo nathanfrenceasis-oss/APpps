@@ -371,14 +371,14 @@ function renderSurpriseContent(surprise, dayNum) {
     if (!surprise || !surprise.type) {
         document.getElementById("revealed-icon").textContent = "🔒";
         document.getElementById("revealed-title").textContent = "Coming Soon";
-        document.getElementById("revealed-badge").textContent = "✨ Day " + dayNum + " ✨";
+        document.getElementById("revealed-badge").textContent = " Day " + dayNum + " ";
         contentDiv.innerHTML = "<p>Wala pang surprise para sa araw na ito!</p>";
         return;
     }
 
     document.getElementById("revealed-icon").textContent = surprise.icon;
     document.getElementById("revealed-title").textContent = surprise.title;
-    document.getElementById("revealed-badge").textContent = "✨ Day " + dayNum + " ✨";
+    document.getElementById("revealed-badge").textContent = " Day " + dayNum + " ";
 
     if (surprise.type === "game" || surprise.type === "challenge") {
         gameState = "IDLE";
@@ -389,10 +389,10 @@ function renderSurpriseContent(surprise, dayNum) {
                     ${surprise.content}
                 </p>
                 <p style="font-size: 12px; color: #777; margin: 0 0 12px 0;">
-                    Tap the button when it turns 💚
+                    Tap the button when it turns green
                 </p>
                 <button id="challenge-btn" class="challenge-btn ready">
-                    START ⚡
+                    START 
                 </button>
                 <div id="challenge-result" class="challenge-result"></div>
             </div>
@@ -413,7 +413,7 @@ function renderSurpriseContent(surprise, dayNum) {
                 challengeTimeout = setTimeout(() => {
                     gameState = "READY";
                     startTime = Date.now();
-                    btn.textContent = "TAP NOW! ⚡ 💚";
+                    btn.textContent = "TAP NOW!";
                     btn.className = "challenge-btn go";
                 }, randomDelay);
 
@@ -432,9 +432,9 @@ function renderSurpriseContent(surprise, dayNum) {
 
                 let feedbackMessage = "";
                 if (reactionTime < 0.45) {
-                    feedbackMessage = "⚡ Eyyy ang bilis nya, story mona para mapa bilib mo kami";
+                    feedbackMessage = " Eyyy ang bilis nya, story mona para mapa bilib mo kami";
                 } else if (reactionTime <= 0.60) {
-                    feedbackMessage = "🔥 Nice ang lupett, pwede nang mangarap!";
+                    feedbackMessage = " Nice ang lupett, pwede nang mangarap!";
                 } else {
                     feedbackMessage = " HAHAHA muntik na! Antok ka pa ata AHAHAH!";
                 }
@@ -488,7 +488,7 @@ function renderSurpriseContent(surprise, dayNum) {
         playBtn.onclick = function () {
             if (audio.paused) {
                 audio.play();
-                playBtn.textContent = "⏸";
+                playBtn.innerHTML = "&#9654;";
             } else {
                 audio.pause();
                 playBtn.textContent = "▶";
