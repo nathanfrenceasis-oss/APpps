@@ -485,15 +485,15 @@ function renderSurpriseContent(surprise, dayNum) {
         const playBtn = contentDiv.querySelector(".play-btn");
         const progressBar = contentDiv.querySelector(".progress-bar");
 
-        playBtn.onclick = function () {
-            if (audio.paused) {
-                audio.play();
-                playBtn.innerHTML = "&#9654;";
-            } else {
-                audio.pause();
-                playBtn.textContent = "▶";
-            }
-        };
+playBtn.onclick = function () {
+    if (audio.paused) {
+        audio.play();
+        playBtn.classList.add("playing");
+    } else {
+        audio.pause();
+        playBtn.classList.remove("playing");
+    }
+};
 
         audio.ontimeupdate = function () {
             if (audio.duration) {
@@ -507,11 +507,11 @@ function renderSurpriseContent(surprise, dayNum) {
             }
         };
 
-        audio.onended = function () {
-            playBtn.textContent = "▶";
-            progressBar.value = 0;
-        };
-
+   audio.onended = function () {
+    playBtn.classList.remove("playing");
+    progressBar.value = 0;
+};
+        
     } else if (surprise.type === "quiz") {
         contentDiv.innerHTML = `
             <div class="quiz-container">
@@ -544,7 +544,7 @@ function renderSurpriseContent(surprise, dayNum) {
                 >${savedAnswer ? savedAnswer : ""}</textarea>
 
                 <button id="send-answer-btn" class="challenge-btn ready" style="padding: 12px; font-size: 15px;">
-                    💌 Send Answer
+                     Send Answer
                 </button>
 
                 <div id="answer-status" class="answer-status"></div>
@@ -559,7 +559,7 @@ function renderSurpriseContent(surprise, dayNum) {
             const answerText = answerInput.value.trim();
 
             if (!answerText) {
-                alert("Sulat ka muna ng sagot mo hehe! 💗");
+                alert("Sulat ka muna ng sagot mo hehe");
                 return;
             }
 
@@ -578,15 +578,15 @@ function renderSurpriseContent(surprise, dayNum) {
                 })
             })
             .then(res => {
-                sendBtn.textContent = "💌 Sent!";
+                sendBtn.textContent =  "Sent!";
                 sendBtn.disabled = false;
-                statusDiv.textContent = "Nase-send na sa akin! Thank you 💗";
+                statusDiv.textContent = "Nase-send na sa akin! Thank you";
                 createConfetti();
             })
             .catch(err => {
-                sendBtn.textContent = "💌 Send Answer";
+                sendBtn.textContent = " Send Answer";
                 sendBtn.disabled = false;
-                statusDiv.textContent = "Na-save na ang sagot mo! 💗";
+                statusDiv.textContent = "Na-save na ang sagot mo! ";
                 createConfetti();
             });
         };
@@ -606,7 +606,7 @@ function renderSurpriseContent(surprise, dayNum) {
                 <div id="game-area" style="width: 100%; height: 220px; background: #fff0f3; border: 2px dashed #ff4d6d; border-radius: 12px; position: relative; overflow: hidden; touch-action: manipulation;">
                     <div id="catcher-start-overlay" style="position: absolute; inset: 0; background: rgba(255,255,255,0.85); display: flex; align-items: center; justify-content: center; z-index: 10;">
                         <button id="start-catcher-btn" class="challenge-btn ready" style="padding: 10px 20px; font-size: 14px;">
-                            START GAME 💖
+                            START GAME 
                         </button>
                     </div>
                 </div>
@@ -649,13 +649,13 @@ function renderSurpriseContent(surprise, dayNum) {
 
                     let feedback = "";
                     if (score >= 15) {
-                        feedback = "🔥 bangiss, pwede na mag trabaho! ❤️";
+                        feedback = " bangiss, pwede na mag trabaho! ";
                         createConfetti();
                     } else if (score >= 8) {
-                        feedback = "👏 Eyyy pwede na! Nakuha mo halos lahat!, agnass 🌸";
+                        feedback = " Eyyy pwede na! Nakuha mo halos lahat!, agnass 🌸";
                         createConfetti();
                     } else {
-                        feedback = "😜 Muntik na! Mabagal yata daliri ngayon ah? HAHAHA!";
+                        feedback = " Muntik na! Mabagal yata daliri ngayon ah? HAHAHA!";
                     }
 
                     resultDiv.innerHTML = `Game Over! Final Score: <b>${score}</b><br><span style="font-size: 12px; font-weight: 500;">${feedback}</span>`;
@@ -782,12 +782,12 @@ function renderSurpriseContent(surprise, dayNum) {
 
                         if (matchedPairs === 3) {
                             let feedback = totalFlips <= 4 
-                                ? "🔥 PERFECT MEMORY! Sisiw lang sa'yo ah! ❤️" 
-                                : "👏 Ang galing! Nahulaan mo lahat ng pares! 🌸";
+                                ? "PERFECT MEMORY! Sisiw lang sa'yo ah! ❤️" 
+                                : " Ang galing! Nahulaan mo lahat ng pares! 🌸";
 
                             resultDiv.innerHTML = `
                                 <div style="font-size: 15px; font-weight: 700; color: #2b9348; margin-top: 8px;">
-                                    🎉 Panalo ka!
+                                     Panalo ka!
                                 </div>
                                 <div style="font-size: 12px; margin-top: 4px;">${feedback}</div>
                             `;
@@ -831,7 +831,7 @@ function renderSurpriseContent(surprise, dayNum) {
                     
                     <div id="whack-overlay" class="whack-overlay">
                         <button id="start-whack-btn" class="challenge-btn ready" style="padding: 10px 20px; font-size: 14px;">
-                            START GAME 🔨
+                            START GAME 
                         </button>
                     </div>
                 </div>
@@ -902,13 +902,13 @@ function renderSurpriseContent(surprise, dayNum) {
 
                     let feedback = "";
                     if (score >= 12) {
-                        feedback = "🔥 SOBRANG BILIS! Ang talas ng reflexes mo madam! ❤️";
+                        feedback = " SOBRANG BILIS! Ang talas ng reflexes mo madam! ";
                         createConfetti();
                     } else if (score >= 6) {
-                        feedback = "👏 Magaling! Marami ka ring natapik! 🌸";
+                        feedback = " Magaling! Marami ka ring natapik! 🌸";
                         createConfetti();
                     } else {
-                        feedback = "😜 Bitin! Bagalan mo mag-isip, bilisan mo mag-tap! HAHAHA!";
+                        feedback = " Bitin! Bagalan mo mag-isip, bilisan mo mag-tap! HAHAHA!";
                     }
 
                     resultDiv.innerHTML = `Game Over! Score: <b>${score}</b><br><span style="font-size: 12px; font-weight: 500;">${feedback}</span>`;
