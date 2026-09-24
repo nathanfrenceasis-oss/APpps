@@ -25,7 +25,7 @@ const surprises = [
         type: "game",
         title: "Reaction Speed Challenge",
         icon: "⚡",
-        content: "Tignan natin kung gaano ako kabilis mag selos, este kung gaano kabilis ang reaction time mo! 😉"
+        content: "letss se kung gano kabilis ang reaction time mo, ANo G? "
     },
     {
         type: "quiz",
@@ -33,11 +33,11 @@ const surprises = [
         icon: "🤑",
         question: "What do you think I would do first if I suddenly became rich?",
         options: [
-            "Lalabas ng ibang bansa",
-            "Magdadate tayo",
+            "Tulongan ang langgam",
+            "Lalabas tayo ng bansa at magtatayo ng maayos na pamilya",
             "All in sa sugal"
         ],
-        correctAnswer: "Matik magdadate tayo, tas sa ibang bansa pa ehehe❤️",
+        correctAnswer: "Matik ikaw uunahin ko, love kaya kita",
         revealMessage: "Did you guess it right? 👀"
     },
 
@@ -56,7 +56,7 @@ const surprises = [
         type: "question",
         title: "Random Question",
         icon: "❓",
-        content: "1. What's one thing about me that you didn't expect to like, but eventually did?\n2. Do you think I'm someone you could see staying in your life for a long time? Why?",
+        content: "1. What's one thing about me that you didn't expect to like, but eventually did? 2. Do you think I'm someone you could see staying in your life for a long time? Why?",
         formspreeUrl: "https://formspree.io/f/xoeveljv"
     },
 
@@ -72,7 +72,7 @@ const surprises = [
         type: "catcher",
         title: "Catch My Love!",
         icon: "💖",
-        content: "Tapikin ang mga 💖 at 🌸 sa loob ng 10 seconds. Iwasan ang 💣 kasi bawas puntos 'yan! 😉"
+        content: "Tapikin ang mga 💖 at 🌸 sa loob ng 10 seconds. Iwasan ang 💣 kasi bawas puntos yan!"
     },
   
     {
@@ -104,7 +104,7 @@ const surprises = [
         type: "memory",
         title: "Memory Card Match!",
         icon: "🃏",
-        content: "Subukan natin ang memorya mo! Hanapin ang 3 magkaparehong pares ng cards. 😉"
+        content: "Subukan natin ang memorya mo! Hanapin ang 3 magkaparehong pares ng cards. "
     },
 
     {
@@ -136,12 +136,12 @@ const surprises = [
         type: "whack",
         title: "Tap My Love!",
         icon: "🔨",
-        content: "Whack-a-Heart style! Tapikin ang mga pusong lumilitaw sa bilog sa loob ng 12 seconds bago sila magtago! 😉"
+        content: "Whack-a-Heart style! Tapikin ang mga pusong lumilitaw sa bilog sa loob ng 12 seconds bago sila magtago! "
     },
 
      {
         type: "letter",
-        title: "Final Note",
+        title: "Little Reminder",
         icon: "💗",
         content: "Palaging mong tandaan na nandito lang ako para sayo. mahal kita hanggang sa pagtanda!"
     },
@@ -164,13 +164,13 @@ const surprises = [
         icon: "🎡",
         options: [
             "Church Date",
-            "Street Food Crawl 🍢",
-            "Ice Cream date 🍦",
-            "Late Night Walk 🍿",
+            "Street Food ",
+            "Ice Cream date ",
+            "Late Night Walk ",
             "Up Diliman Date",
             "Sa bahay"
         ],
-        content: "spin mo ang gulong para malaman natin kung anong uri ng date ang gagawin natin sa susunod!"
+        content: "Spin mo para malaman natin kung anong date ang gagawin natin sa susunod"
     },
 
     
@@ -178,7 +178,7 @@ const surprises = [
         type: "scratch",
         title: "Scratch & Reveal!",
         icon: "🎟️",
-        secretMessage: "FREE UNLIMITED HUGS & KISSES COUPON 💖 (Valid anytime!)",
+        secretMessage: "FREE UNLIMITED HUGS & KISS (Ito palang ang kaya ko sorry na)",
         content: "Kuskusin mo ang card gamit ang daliri o cursor mo para ma-reveal ang iyong voucher secret prize!"
     },
 
@@ -188,8 +188,8 @@ const surprises = [
         title: "Special Love Pass",
         icon: "🎫",
         code: "LOVE-PASS-2026",
-        passTitle: "YOU WIN ANY ARGUMENT PASS",
-        description: "Ipakita lang ang pass na 'to kapag nagtatampo ka para matic ikaw agad ang panalo! bossing yarn ",
+        passTitle: "I Buy Anything You want",
+        description: "After all, you deserve it naman so, lilibre kita kahit ano. kasi nakakhiya naman sayo po buseng ko, joke hehe",
         content: "May nakuha kang special voucher coupon ngayong araw!"
     },
 
@@ -202,8 +202,6 @@ const surprises = [
     },
    
   
-  
-
     {
         type: "fortune",
         title: "Love Fortune Cookie",
@@ -227,19 +225,19 @@ const surprises = [
         title: "Our Travel Bucket List",
         icon: "✈️",
         places: [
-          "Switzerland 🍓",
-            "Boracay Beach Sunset 🌊",
-            "Tokyo, Japan (Ito piliin mo please)  ☕",
-            "Late Night City Tagaytay Drive 🌃"
+          "Switzerland ",
+            "Boracay Beach Sunset ",
+            "Tokyo, Japan (Ito piliin mo please)  ",
+            "Late Night City Tagaytay Drive "
         ],
-        content: "Alin sa mga 'to ang gusto mong unahin nating puntahan sa susunod?"
+        content: "Saan dito ang gusto mong unahin nating puntahan sa susunod?"
     },
 
         {
         type: "question",
         title: "Random Question",
         icon: "❓",
-        content: "Kung totoo man ang sinabi mona na i-iba sa lahat, pwede mo ba sabihin kung bakit? (curios lang)",
+        content: "Kung totoo man ang sinabi mona na iba ako sa lahat, pwede mo ba sabihin kung bakit? (curios lang)",
         formspreeUrl: "https://formspree.io/f/xoeveljv"
     },
 
@@ -266,7 +264,7 @@ const surprises = [
         type: "quiz",
         title: "The Grand Love Quiz",
         icon: "🏆",
-        content: "Sagutin ang final quiz para matapos ang 30-day challenge! 🎉",
+        content: "Sagutin ang final quiz para matapos ang 30-day challenge! ",
 
         question: "After all these 30 days, what do you think is my favorite thing about you?",
         options: [
@@ -274,8 +272,8 @@ const surprises = [
         "Your personality",
         "Everything about you"
     ],
-    correctAnswer: "Everything about you ❤️",
-    revealMessage: "You made it through all 30 days! 🎉❤️"
+    correctAnswer: "Everything about you ",
+    revealMessage: "You made it through all 30 days! "
     }
 ];
 
@@ -297,7 +295,8 @@ if (!startDate) {
 function getDayNumber() {
     const difference = today.getTime() - Number(startDate);
     const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-    return days + 1;
+
+     return Math.min(days + 1, 30);
 }
 
 function updateDayNumber() {
@@ -310,7 +309,7 @@ function setFrontCardDay(dayNum) {
 
     const badge = document.getElementById("front-day-badge");
     if (badge) {
-        badge.textContent = "✨ Day " + selectedDay + " ✨";
+        badge.textContent = "Day " + selectedDay + " ";
     }
 
     const frontCard = document.getElementById("front-card");
@@ -422,7 +421,7 @@ function renderSurpriseContent(surprise, dayNum) {
                 gameState = "FINISHED";
                 btn.textContent = "TRY AGAIN 🔄";
                 btn.className = "challenge-btn ready";
-                resultDiv.innerHTML = "<span style='color: #e63946;'>❌ Enggkkk excited yarn? Wait mo mag green buseng </span>";
+                resultDiv.innerHTML = "<span style='color: #e63946;'> Enggkkk excited yarn? Wait mo mag green buseng </span>";
 
             } else if (gameState === "READY") {
                 const reactionTime = ((Date.now() - startTime) / 1000).toFixed(2);
@@ -440,7 +439,7 @@ function renderSurpriseContent(surprise, dayNum) {
                 }
 
                 resultDiv.innerHTML = `
-                    <div style="font-size: 22px; font-weight: 700; color: #581825; margin-top: 8px;">${reactionTime} seconds! ⚡</div>
+                    <div style="font-size: 22px; font-weight: 700; color: #581825; margin-top: 8px;">${reactionTime} seconds! </div>
                     <div style="margin-top: 4px; font-weight: 600;">${feedbackMessage}</div>
                 `;
 
@@ -652,10 +651,10 @@ playBtn.onclick = function () {
                         feedback = " bangiss, pwede na mag trabaho! ";
                         createConfetti();
                     } else if (score >= 8) {
-                        feedback = " Eyyy pwede na! Nakuha mo halos lahat!, agnass 🌸";
+                        feedback = " Eyyy pwede na, nakuha mo halos lahat, agnass 🌸";
                         createConfetti();
                     } else {
-                        feedback = " Muntik na! Mabagal yata daliri ngayon ah? HAHAHA!";
+                        feedback = " Ayy naka tulog ";
                     }
 
                     resultDiv.innerHTML = `Game Over! Final Score: <b>${score}</b><br><span style="font-size: 12px; font-weight: 500;">${feedback}</span>`;
@@ -695,7 +694,7 @@ playBtn.onclick = function () {
                     e.stopPropagation();
                     if (isBomb) {
                         score = Math.max(0, score - 3);
-                        resultDiv.innerHTML = "<span style='color:#e63946;'>💣 Aww nagselos! -3 points!</span>";
+                        resultDiv.innerHTML = "<span style='color:#e63946;'>💣 bomba clat -3 points!</span>";
                     } else {
                         score += 1;
                     }
@@ -735,7 +734,7 @@ playBtn.onclick = function () {
         const resultDiv = document.getElementById("memory-result");
 
         const icons = ["💖", "🌸", "🍦"];
-        // I-duplicate ang icons para maging 3 pairs (6 cards) at i-shuffle
+        
         let cardsData = [...icons, ...icons].sort(() => Math.random() - 0.5);
 
         let flippedCards = [];
@@ -772,7 +771,7 @@ playBtn.onclick = function () {
                     const [card1, card2] = flippedCards;
 
                     if (card1.dataset.icon === card2.dataset.icon) {
-                        // MATCH!
+                       
                         card1.classList.add("matched");
                         card2.classList.add("matched");
                         matchedPairs++;
@@ -782,8 +781,8 @@ playBtn.onclick = function () {
 
                         if (matchedPairs === 3) {
                             let feedback = totalFlips <= 4 
-                                ? "PERFECT MEMORY! Sisiw lang sa'yo ah! ❤️" 
-                                : " Ang galing! Nahulaan mo lahat ng pares! 🌸";
+                                ? "Galing, wala ako takas nito sguro kapag may nagawang mali" 
+                                : "DAAAMnn, how u do that??";
 
                             resultDiv.innerHTML = `
                                 <div style="font-size: 15px; font-weight: 700; color: #2b9348; margin-top: 8px;">
@@ -794,7 +793,7 @@ playBtn.onclick = function () {
                             createConfetti();
                         }
                     } else {
-                        // Mismatch - itataob ulit pagkaraan ng 0.8s
+                      
                         setTimeout(() => {
                             card1.classList.remove("flipped");
                             card2.classList.remove("flipped");
@@ -902,13 +901,13 @@ playBtn.onclick = function () {
 
                     let feedback = "";
                     if (score >= 12) {
-                        feedback = " SOBRANG BILIS! Ang talas ng reflexes mo madam! ";
+                        feedback = " SOBRANG BILIS! Parang si the flash";
                         createConfetti();
                     } else if (score >= 6) {
-                        feedback = " Magaling! Marami ka ring natapik! 🌸";
+                        feedback = " Magaling!";
                         createConfetti();
                     } else {
-                        feedback = " Bitin! Bagalan mo mag-isip, bilisan mo mag-tap! HAHAHA!";
+                        feedback = "HAHAHA SLOW HANDSSS";
                     }
 
                     resultDiv.innerHTML = `Game Over! Score: <b>${score}</b><br><span style="font-size: 12px; font-weight: 500;">${feedback}</span>`;
@@ -966,12 +965,12 @@ playBtn.onclick = function () {
         const resultDiv = document.getElementById("wheel-result");
 
         const options = surprise.options || [
-            "Samgyupsal Date 🥩",
-            "Street Food Crawl 🍢",
-            "Ice Cream Date 🍦",
-            "Movie Night 🍿",
-            "Coffee & Talk ☕",
-            "Kahit Ano Bastat Kasama Ka ❤️"
+            "Church Date",
+            "Street Food ",
+            "Ice Cream date ",
+            "Late Night Walk ",
+            "Up Diliman Date",
+            "Sa bahay"
         ];
 
         const numOptions = options.length;
@@ -1072,10 +1071,10 @@ playBtn.onclick = function () {
 
                     resultDiv.innerHTML = `
                         <div style="font-size: 16px; font-weight: 700; color: #ff4d6d; margin-top: 10px;">
-                            🎯 Resulta: ${selectedOption}
+                            Resulta: ${selectedOption}
                         </div>
                         <div style="font-size: 12px; font-weight: 600; color: #581825; margin-top: 4px;">
-                            Matic dapat matuloy 'to ha! Walang bawi! 😜❤️
+                           Tuloy to promise, kapag may pera nga lang, emmess
                         </div>
                     `;
 
@@ -1096,14 +1095,14 @@ playBtn.onclick = function () {
                 </p>
 
                 <div class="scratch-card-wrapper">
-                    <!-- Secret Message Layer (Nakatago sa ilalim) -->
+                  
                     <div class="scratch-secret-layer">
                         <div style="font-size: 28px; margin-bottom: 4px;">🎟️</div>
                         <div class="scratch-secret-title">SPECIAL VOUCHER</div>
-                        <div class="scratch-secret-text">${surprise.secretMessage || "FREE UNLIMITED HUGS & KISSES COUPON 💖"}</div>
+                        <div class="scratch-secret-text">${surprise.secretMessage || "FREE UNLIMITED HUGS & KISS"}</div>
                     </div>
 
-                    <!-- Scratch Canvas Cover (Ikus-kos layer) -->
+              
                     <canvas id="scratch-canvas" width="260" height="150"></canvas>
                 </div>
 
@@ -1124,7 +1123,7 @@ playBtn.onclick = function () {
             ctx.fillStyle = "#ffffff";
             ctx.font = "bold 14px Sans-Serif";
             ctx.textAlign = "center";
-            ctx.fillText("✨ KUSKUSIN DITO ✨", canvas.width / 2, canvas.height / 2 + 5);
+            ctx.fillText(" KUSKUSIN DITO ", canvas.width / 2, canvas.height / 2 + 5);
         }
 
         initScratchCard();
@@ -1175,10 +1174,10 @@ playBtn.onclick = function () {
 
                 resultDiv.innerHTML = `
                     <div style="font-size: 15px; font-weight: 700; color: #2b9348; margin-top: 10px;">
-                        🎉 Na-reveal mo na ang voucher!
+                         Na-reveal mo na ang voucher!
                     </div>
                     <div style="font-size: 12px; font-weight: 600; color: #581825; margin-top: 2px;">
-                        I-screenshot mo ito para ma-redeem mo sakin anytime! 😘
+                        I-screenshot mo to tas delete mo rin eme HAHAHAA
                     </div>
                 `;
 
@@ -1221,7 +1220,7 @@ playBtn.onclick = function () {
                     <div class="coupon-footer">
                         <div class="coupon-badge">VALID ANYTIME • NO EXPIRATION</div>
                         <button id="redeem-coupon-btn" class="challenge-btn ready" style="padding: 8px 18px; font-size: 13px; margin-top: 8px;">
-                            USE COUPON NOW 💖
+                            USE COUPON RIGHT NEOW 
                         </button>
                     </div>
                 </div>
@@ -1243,10 +1242,10 @@ playBtn.onclick = function () {
 
             resultDiv.innerHTML = `
                 <div style="font-size: 15px; font-weight: 700; color: #2b9348; margin-top: 10px;">
-                    🎉 Na-claim mo na ang Special Pass mo!
+                    Na-claim mo na ang Special Pass mo!
                 </div>
                 <div style="font-size: 12px; font-weight: 600; color: #581825; margin-top: 2px;">
-                    Naka-record na 'to saken! I-screenshot mo na para may ebidensya ka! 😘(Secret  mona kong pano ko nalalaman)
+                    Naka-record na 'to saken! I-screenshot mo na para ma full storage ka eme (Secret mona kong pano ko nalalaman)
                 </div>
             `;
 
@@ -1341,7 +1340,7 @@ playBtn.onclick = function () {
                         <div class="envelope-letter" id="envelope-letter">
                             <div class="letter-title">PARA SA PINAKAMAMAHAL KONG ASAWA ❤️</div>
                             <div class="letter-body">
-                                ${surprise.letterText || "Gusto ko lang ipaalala sa'yo na sobrang proud ako sa lahat ng pinagdidiretsuhan at pinaghihirapan mo. Nandito lang ako palagi para suportahan at mahalin ka! 😘"}
+                                ${surprise.letterText || "Gusto ko lang ipaalala sa'yo na sobrang proud ako sa lahat ng pinaghihirapan at sa mga bagay na na achieve mo. Nandito lang ako palagi para sa'yo! hinde kita iiwan loveyouu ❤️"}
                             </div>
                         </div>
                     </div>
@@ -1349,7 +1348,7 @@ playBtn.onclick = function () {
 
                 <div style="margin-top: 14px;">
                     <button id="open-envelope-btn" class="challenge-btn ready" style="padding: 10px 22px; font-size: 14px;">
-                        OPEN LETTER ✉️
+                        OPEN LETTER 
                     </button>
                 </div>
 
@@ -1373,10 +1372,10 @@ playBtn.onclick = function () {
             setTimeout(() => {
                 resultDiv.innerHTML = `
                     <div style="font-size: 14px; font-weight: 700; color: #2b9348; margin-top: 10px;">
-                        ✨ Nabuksan mo na ang liham!
+                         Nabuksan mo na ang liham!
                     </div>
                     <div style="font-size: 12px; font-weight: 600; color: #581825; margin-top: 2px;">
-                        Palaging tandaan ang mga nakasulat diyan ha? I love you! 😘❤️
+                        Palaging tandaan ang mga nakasulat diyan ha? 
                     </div>
                 `;
 
@@ -1391,10 +1390,10 @@ playBtn.onclick = function () {
 
 } else if (surprise.type === "bucketlist") {
         const places = surprise.places || [
-            "Switzerland 🍓",
-            "Boracay Beach Sunset 🌊",
-            "Tokyo, Japan (Ito piliin mo pleas)  ☕",
-            "Late Night City Tagaytay Drive 🌃"
+            "Switzerland ",
+            "Boracay Beach Sunset ",
+            "Tokyo, Japan (Ito piliin mo pleas)  ",
+            "Late Night City Tagaytay Drive "
         ];
 
         contentDiv.innerHTML = `
@@ -1404,7 +1403,7 @@ playBtn.onclick = function () {
                 </p>
 
                 <div class="bucketlist-stats">
-                    Progress: <span id="bucket-count">0</span>/${places.length} Completed ✈️
+                    Progress: <span id="bucket-count">0</span>/${places.length} Completed 
                 </div>
 
                 <div class="bucketlist-items" id="bucket-list-group">
@@ -1430,7 +1429,7 @@ playBtn.onclick = function () {
             item.onclick = function () {
                 item.classList.toggle("checked");
 
-                // Bilangin kung ilan na ang naka-check
+             
                 completedCount = contentDiv.querySelectorAll(".bucket-item.checked").length;
                 countDisplay.textContent = completedCount;
 
