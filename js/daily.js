@@ -1238,7 +1238,7 @@ playBtn.onclick = function () {
             redeemBtn.classList.add("claimed");
             redeemBtn.style.background = "#2b9348";
             redeemBtn.style.borderColor = "#2b9348";
-            redeemBtn.textContent = "COUPON REDEEMED! ✅";
+            redeemBtn.textContent = "COUPON REDEEMED! ";
 
             resultDiv.innerHTML = `
                 <div style="font-size: 15px; font-weight: 700; color: #2b9348; margin-top: 10px;">
@@ -1270,7 +1270,7 @@ playBtn.onclick = function () {
                   
                     <div id="fortune-paper" class="fortune-paper">
                         <div style="font-size: 11px; font-weight: 800; color: #ff4d6d; letter-spacing: 1px; margin-bottom: 4px;">
-                            🔮 YOUR LOVE FORTUNE
+                             YOUR LOVE FORTUNE
                         </div>
                         <div class="fortune-text">
                             ${surprise.fortuneMessage || "Sabi ng kapalaran: Tatanda daw tayo ng mag kasama unti-unti natin na aabot ang mga pangarap natin at mamumuhay tayo ng payapa, at ititira kita sa bahay ng walang sigawan 😘"}
@@ -1280,7 +1280,7 @@ playBtn.onclick = function () {
 
                 <div style="margin-top: 14px;">
                     <button id="crack-cookie-btn" class="challenge-btn ready" style="padding: 10px 22px; font-size: 14px;">
-                        CRACK THE COOKIE 🥠
+                        CRACK THE COOKIE 
                     </button>
                 </div>
 
@@ -1338,7 +1338,7 @@ playBtn.onclick = function () {
                         
                         <!-- Liham sa loob -->
                         <div class="envelope-letter" id="envelope-letter">
-                            <div class="letter-title">PARA SA PINAKAMAMAHAL KONG ASAWA ❤️</div>
+                            <div class="letter-title">PARA SA PINAKAMAMAHAL KONG ASAWA </div>
                             <div class="letter-body">
                                 ${surprise.letterText || "Gusto ko lang ipaalala sa'yo na sobrang proud ako sa lahat ng pinaghihirapan at sa mga bagay na na achieve mo. Nandito lang ako palagi para sa'yo! hinde kita iiwan loveyouu ❤️"}
                             </div>
@@ -1436,7 +1436,7 @@ playBtn.onclick = function () {
                 if (completedCount === places.length) {
                     resultDiv.innerHTML = `
                         <div style="font-size: 15px; font-weight: 700; color: #2b9348; margin-top: 10px;">
-                            🎉 ALL BUCKET LIST CHECKED!
+                            ALL BUCKET LIST CHECKED!
                         </div>
                         <div style="font-size: 12px; font-weight: 600; color: #581825; margin-top: 2px;">
                             Matutupad nating lahat 'to nang magkasama! Kaya wag mo 'ko iiwan ha ❤️
@@ -1464,7 +1464,7 @@ playBtn.onclick = function () {
     contentDiv.innerHTML = `
         <div style="text-align: center;">
             <p style="font-size: 13px; color: #581825; margin: 0 0 8px 0; font-weight: 500;">
-                ${surprise.content || "Kainin ang mga puso! Makuha lang ang 5 points para manalo! 🐍💖"}
+                ${surprise.content || "Kainin ang mga puso! Makuha lang ang 5 points para manalo! "}
             </p>
             <div style="font-weight: 700; color: #ff4d6d; margin-bottom: 6px; font-size: 13px;">
                 Score: <span id="snake-score">0</span> / 5
@@ -1493,433 +1493,7 @@ playBtn.onclick = function () {
         </div>
     `;
 
-    const canvas = document.getElementById("snake-canvas");
-    const ctx = canvas.getContext("2d");
-    const scoreDisplay = document.getElementById("snake-score");
-    const resultDiv = document.getElementById("snake-result");
-    const startOverlay = document.getElementById("snake-start-overlay");
-    const startBtn = document.getElementById("snake-start-btn");
-
-    const grid = 20;
-    let snake = [{x: 100, y: 100}, {x: 80, y: 100}];
-    let dx = grid, dy = 0;
-    let nextDx = dx, nextDy = dy;
-    let food = {x: 160, y: 100};
-    let score = 0;
-    let gameInterval = null;
-
-    function getRandomFoodPos() {
-        let newX, newY, collision;
-        do {
-            collision = false;
-            newX = Math.floor(Math.random() * (canvas.width / grid)) * grid;
-            newY = Math.floor(Math.random() * (canvas.height / grid)) * grid;
-            for (let part of snake) {
-                if (part.x === newX && part.y === newY) {
-                    collision = true;
-                    break;
-                }
-            }
-        } while (collision);
-        return {x: newX, y: newY};
-    }
-
-    function runSnake() {
-        if (!document.getElementById("snake-canvas")) {
-            clearInterval(gameInterval);
-            return;
-        }
-
-        dx = nextDx;
-        dy = nextDy;
-        const head = {x: snake[0].x + dx, y: snake[0].y + dy};
-
-        let selfCollision = snake.some(part => part.x === head.x && part.y === head.y);
-        let wallCollision = head.x < 0 || head.x >= canvas.width || head.y < 0 || head.y >= canvas.height;
-
-        if (wallCollision || selfCollision) {
-            clearInterval(gameInterval);
-            startOverlay.style.display = "flex";
-            startBtn.textContent = "🔄 Try Again";
-            if (resultDiv) resultDiv.innerHTML = "💔 Ouch! Subukan ulit!";
-            return;
-        }
-
-        snake.unshift(head);
-
-        if (head.x === food.x && head.y === food.y) {
-            score++;
-            if (scoreDisplay) scoreDisplay.textContent = score;
-            if (score >= 5) {
-                clearInterval(gameInterval);
-                if (resultDiv) resultDiv.innerHTML = "🎉 PANALO KA! Ang galing mo mag-control ng snake! ❤️";
-                if (typeof createConfetti === "function") createConfetti();
-                startOverlay.style.display = "flex";
-                startBtn.textContent = "🏆 Play Again";
-            } else {
-                food = getRandomFoodPos();
-            }
-        } else {
-            snake.pop();
-        }
-
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        // Draw Heart Food
-        ctx.font = "16px sans-serif";
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        ctx.fillText("💖", food.x + grid / 2, food.y + grid / 2 + 1);
-
-        // Draw Snake Body & Head
-        snake.forEach((part, index) => {
-            ctx.fillStyle = index === 0 ? "#ff2a54" : "#ff758f";
-            ctx.beginPath();
-            ctx.roundRect(part.x + 1, part.y + 1, grid - 2, grid - 2, 6);
-            ctx.fill();
-
-            // Draw cute eyes on Snake Head
-            if (index === 0) {
-                ctx.fillStyle = "#ffffff";
-                ctx.beginPath();
-                ctx.arc(part.x + 6, part.y + 6, 2.5, 0, Math.PI * 2);
-                ctx.arc(part.x + 14, part.y + 6, 2.5, 0, Math.PI * 2);
-                ctx.fill();
-
-                ctx.fillStyle = "#000000";
-                ctx.beginPath();
-                ctx.arc(part.x + 6, part.y + 6, 1, 0, Math.PI * 2);
-                ctx.arc(part.x + 14, part.y + 6, 1, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        });
-    }
-
-    function startGame() {
-        snake = [{x: 100, y: 100}, {x: 80, y: 100}];
-        dx = grid; dy = 0;
-        nextDx = grid; nextDy = 0;
-        score = 0;
-        food = getRandomFoodPos();
-        if (scoreDisplay) scoreDisplay.textContent = score;
-        if (resultDiv) resultDiv.innerHTML = "";
-        startOverlay.style.display = "none";
-
-        if (gameInterval) clearInterval(gameInterval);
-        
-        gameInterval = setInterval(runSnake, 290);
-    }
-
-    startBtn.onclick = startGame;
-
-    // Controls
-    document.getElementById("s-up").onclick = () => { if (dy === 0) { nextDx = 0; nextDy = -grid; } };
-    document.getElementById("s-down").onclick = () => { if (dy === 0) { nextDx = 0; nextDy = grid; } };
-    document.getElementById("s-left").onclick = () => { if (dx === 0) { nextDx = -grid; nextDy = 0; } };
-    document.getElementById("s-right").onclick = () => { if (dx === 0) { nextDx = grid; nextDy = 0; } };
-
-
-    } else if (surprise.type === "breakout") {
-    contentDiv.innerHTML = `
-        <div style="text-align: center;">
-            <p style="font-size: 13px; color: #581825; margin: 0 0 8px 0; font-weight: 500;">
-                ${surprise.content || "Basagin ang lahat ng puso sa taas para manalo! 🧱💖"}
-            </p>
-            
-            <div class="game-container">
-                <canvas id="bo-canvas" width="240" height="200"></canvas>
-                
-                <!-- Start Overlay -->
-                <div id="bo-start-overlay" class="game-overlay">
-                    <div class="overlay-emoji">🧱💖</div>
-                    <button id="bo-start-btn" class="game-btn start-btn">▶️ Start Game</button>
-                </div>
-            </div>
-
-            <!-- Paddle Controls for Mobile -->
-            <div class="paddle-controls">
-                <button class="game-btn ctrl-btn" id="bo-left">⬅️ Move Left</button>
-                <button class="game-btn ctrl-btn" id="bo-right">Move Right ➡️</button>
-            </div>
-
-            <div id="bo-result" style="margin-top: 8px; font-weight: 700; font-size: 13px; color: #2b9348;"></div>
-        </div>
-    `;
-
-    const canvas = document.getElementById("bo-canvas");
-    const ctx = canvas.getContext("2d");
-    const resultDiv = document.getElementById("bo-result");
-    const startOverlay = document.getElementById("bo-start-overlay");
-    const startBtn = document.getElementById("bo-start-btn");
-
-    let paddle = { x: 90, width: 60, height: 10 };
-    let ball = { x: 120, y: 150, dx: 2, dy: -2, radius: 6 };
-    let bricks = [];
-    const rows = 3, cols = 4, bWidth = 50, bHeight = 14, bPadding = 6, offsetTop = 20, offsetLeft = 11;
-    let animId = null;
-
-    function initBricks() {
-        bricks = [];
-        for (let r = 0; r < rows; r++) {
-            for (let c = 0; c < cols; c++) {
-                bricks.push({ 
-                    x: c * (bWidth + bPadding) + offsetLeft, 
-                    y: r * (bHeight + bPadding) + offsetTop, 
-                    status: 1 
-                });
-            }
-        }
-    }
-
-    function drawBreakout() {
-        if (!document.getElementById("bo-canvas")) {
-            cancelAnimationFrame(animId);
-            return;
-        }
-
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        
-        let remainingBricks = 0;
-        bricks.forEach(b => {
-            if (b.status === 1) {
-                remainingBricks++;
-                ctx.fillStyle = "#ff4d6d";
-                ctx.beginPath();
-                ctx.roundRect(b.x, b.y, bWidth, bHeight, 5);
-                ctx.fill();
-
-
-                ctx.fillStyle = "#ff758f";
-                ctx.fillRect(b.x + 3, b.y + 2, bWidth - 6, 2);
-            }
-        });
-
-        if (remainingBricks === 0) {
-            cancelAnimationFrame(animId);
-            if (resultDiv) resultDiv.innerHTML = "🎉 PANALO KA! Nabagbag mo lahat ng puso! ❤️";
-            if (typeof createConfetti === "function") createConfetti();
-            startOverlay.style.display = "flex";
-            startBtn.textContent = "🏆 Play Again";
-            return;
-        }
-
-     
-        ctx.font = "14px sans-serif";
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        ctx.fillText("💖", ball.x, ball.y);
-
-     
-        ctx.fillStyle = "#c9184a";
-        ctx.beginPath();
-        ctx.roundRect(paddle.x, canvas.height - paddle.height - 6, paddle.width, paddle.height, 5);
-        ctx.fill();
-
-    
-        ball.x += ball.dx;
-        ball.y += ball.dy;
-
-        if (ball.x - ball.radius < 0 || ball.x + ball.radius > canvas.width) {
-            ball.dx *= -1;
-        }
-        if (ball.y - ball.radius < 0) {
-            ball.dy *= -1;
-        }
-
-     
-        const paddleY = canvas.height - paddle.height - 6;
-        if (ball.y + ball.radius >= paddleY && ball.y - ball.radius <= paddleY + paddle.height) {
-            if (ball.x >= paddle.x && ball.x <= paddle.x + paddle.width) {
-                ball.dy = -Math.abs(ball.dy);
-                
-                
-                let hitPoint = ball.x - (paddle.x + paddle.width / 2);
-                ball.dx = hitPoint * 0.12;
-            }
-        }
-
-       
-    
-        bricks.forEach(b => {
-            if (b.status === 1) {
-                if (ball.x > b.x && ball.x < b.x + bWidth && ball.y - ball.radius < b.y + bHeight && ball.y + ball.radius > b.y) {
-                    b.status = 0;
-                    ball.dy *= -1;
-                }
-            }
-        });
-
-        
-        if (ball.y > canvas.height) {
-            cancelAnimationFrame(animId);
-            startOverlay.style.display = "flex";
-            startBtn.textContent = "🔄 Try Again";
-            if (resultDiv) resultDiv.innerHTML = "💔 Nahulog ang puso! Subukan ulit!";
-            return;
-        }
-
-        animId = requestAnimationFrame(drawBreakout);
-    }
-
-    function startGame() {
-        paddle.x = (canvas.width - paddle.width) / 2;
-        ball = { x: canvas.width / 2, y: canvas.height - 30, dx: (Math.random() > 0.5 ? 2 : -2), dy: -2.5, radius: 6 };
-        initBricks();
-        if (resultDiv) resultDiv.innerHTML = "";
-        startOverlay.style.display = "none";
-
-        if (animId) cancelAnimationFrame(animId);
-        drawBreakout();
-    }
-
-    startBtn.onclick = startGame;
-
-    
-    canvas.addEventListener("mousemove", (e) => {
-        const rect = canvas.getBoundingClientRect();
-        const mouseX = e.clientX - rect.left;
-        paddle.x = Math.max(0, Math.min(canvas.width - paddle.width, mouseX - paddle.width / 2));
-    });
-
-    
-    canvas.addEventListener("touchmove", (e) => {
-        const rect = canvas.getBoundingClientRect();
-        const touchX = e.touches[0].clientX - rect.left;
-        paddle.x = Math.max(0, Math.min(canvas.width - paddle.width, touchX - paddle.width / 2));
-    }, { passive: true });
-
-    
-    let moveSpeed = 25;
-    document.getElementById("bo-left").onclick = () => {
-        paddle.x = Math.max(0, paddle.x - moveSpeed);
-    };
-    document.getElementById("bo-right").onclick = () => {
-        paddle.x = Math.min(canvas.width - paddle.width, paddle.x + moveSpeed);
-    };
-
-
-    } else if (surprise.type === "flappy") {
-    contentDiv.innerHTML = `
-        <div style="text-align: center;">
-            <p style="font-size: 13px; color: #581825; margin: 0 0 8px 0; font-weight: 500;">
-                ${surprise.content || "I-tap ti screen wenno pinduten ti Jump tapno makalabas iti 3 a karayan ti puso! 🐥💖"}
-            </p>
-            <div style="font-weight: 700; color: #ff4d6d; margin-bottom: 6px; font-size: 13px;">
-                Score: <span id="flappy-score">0</span> / 3
-            </div>
-            
-            <div class="game-container">
-                <canvas id="flappy-canvas" width="240" height="200"></canvas>
-                
-                <div id="flappy-start-overlay" class="game-overlay">
-                    <div class="overlay-emoji">🐥💖</div>
-                    <button id="flappy-start-btn" class="game-btn start-btn">▶️ Start Game</button>
-                </div>
-            </div>
-
-            <div style="margin-top: 12px;">
-                <button class="game-btn start-btn" id="flappy-jump-btn" style="width: 140px; font-size: 14px; padding: 10px;">🚀 JUMP!</button>
-            </div>
-
-            <div id="flappy-result" style="margin-top: 8px; font-weight: 700; font-size: 13px; color: #2b9348;"></div>
-        </div>
-    `;
-
-    const canvas = document.getElementById("flappy-canvas");
-    const ctx = canvas.getContext("2d");
-    const scoreDisplay = document.getElementById("flappy-score");
-    const resultDiv = document.getElementById("flappy-result");
-    const startOverlay = document.getElementById("flappy-start-overlay");
-    const startBtn = document.getElementById("flappy-start-btn");
-    const jumpBtn = document.getElementById("flappy-jump-btn");
-
-    let birdY = 100, velocity = 0, gravity = 0.25;
-    let pipeX = 240, pipeGap = 75, pipeTop = 50, pipeWidth = 30;
-    let score = 0;
-    let animId = null;
-
-    function drawFlappy() {
-        if (!document.getElementById("flappy-canvas")) {
-            cancelAnimationFrame(animId);
-            return;
-        }
-
-        velocity += gravity;
-        birdY += velocity;
-        pipeX -= 1.8;
-
-        if (pipeX < -pipeWidth) {
-            pipeX = 240;
-            pipeTop = Math.floor(Math.random() * 70) + 30;
-            score++;
-            if (scoreDisplay) scoreDisplay.textContent = score;
-
-            if (score >= 3) {
-                cancelAnimationFrame(animId);
-                if (resultDiv) resultDiv.innerHTML = "🎉 PANALO KA! Naglikpalo ti imagayongmo! ❤️";
-                if (typeof createConfetti === "function") createConfetti();
-                startOverlay.style.display = "flex";
-                startBtn.textContent = "🏆 Play Again";
-                return;
-            }
-        }
-
-        ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-        ctx.fillStyle = "#ff4d6d";
-        ctx.beginPath();
-        ctx.roundRect(pipeX, 0, pipeWidth, pipeTop, [0, 0, 8, 8]);
-        ctx.roundRect(pipeX, pipeTop + pipeGap, pipeWidth, canvas.height - (pipeTop + pipeGap), [8, 8, 0, 0]);
-        ctx.fill();
-
-        ctx.fillStyle = "#ff758f";
-        ctx.font = "14px sans-serif";
-        ctx.textAlign = "center";
-        ctx.fillText("💖", pipeX + pipeWidth / 2, pipeTop - 8);
-        ctx.fillText("💖", pipeX + pipeWidth / 2, pipeTop + pipeGap + 14);
-
-        ctx.font = "20px sans-serif";
-        ctx.textAlign = "center";
-        ctx.textBaseline = "middle";
-        ctx.fillText("🐥", 45, birdY);
-
-        let birdRadius = 10;
-        let hitPipe = (pipeX < 45 + birdRadius && pipeX + pipeWidth > 45 - birdRadius) &&
-                      (birdY - birdRadius < pipeTop || birdY + birdRadius > pipeTop + pipeGap);
-        let hitBounds = birdY + birdRadius > canvas.height || birdY - birdRadius < 0;
-
-        if (hitPipe || hitBounds) {
-            cancelAnimationFrame(animId);
-            startOverlay.style.display = "flex";
-            startBtn.textContent = "🔄 Try Again";
-            if (resultDiv) resultDiv.innerHTML = "💔 Napalnaog ti billit! Subliam manen!";
-            return;
-        }
-
-        animId = requestAnimationFrame(drawFlappy);
-    }
-
-    function doJump() {
-        if (startOverlay.style.display === "none") {
-            velocity = -4.5;
-        }
-    }
-
-    function startGame() {
-        birdY = 100;
-        velocity = 0;
-        pipeX = 240;
-        pipeTop = 50;
-        score = 0;
-        if (scoreDisplay) scoreDisplay.textContent = score;
-        if (resultDiv) resultDiv.innerHTML = "";
-        startOverlay.style.display = "none";
-
-        if (animId) cancelAnimationFrame(animId);
-        drawFlappy();
-    }
-
+   
     startBtn.onclick = startGame;
     jumpBtn.onclick = doJump;
     canvas.onclick = doJump;
@@ -1977,10 +1551,10 @@ playBtn.onclick = function () {
         counterDisplay.textContent = `${loveScore} / ${targetScore}`;
         progressBar.style.width = `${percentage}%`;
 
-        // Create mini floating heart on click
+     
         createFloatingParticle(e);
 
-        // Animation pop effect
+   
         heartBtn.style.transform = "scale(1.2)";
         setTimeout(() => {
             heartBtn.style.transform = "scale(1)";
@@ -1994,7 +1568,7 @@ playBtn.onclick = function () {
             heartBtn.style.animation = "none";
             heartBtn.style.background = "linear-gradient(135deg, #ffd166, #ff4d6d)";
             
-            // Extra celebratory particles
+       
             for(let i = 0; i < 5; i++) {
                 setTimeout(() => createBurstParticle(), i * 150);
             }
