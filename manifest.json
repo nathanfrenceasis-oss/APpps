@@ -1,6 +1,7 @@
 {
     "name": "Lumi",
     "short_name": "Lumi",
+    "id": "/APpps/index.html",
     "start_url": "./index.html",
     "display": "standalone",
     "background_color": "#ffe9dc",
@@ -9,7 +10,7 @@
     "icons": [
         {
             "src": "./icon-192.png",
-            "sizes": "192x192", 
+            "sizes": "192x192",
             "type": "image/png"
         },
         {
