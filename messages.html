@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Messages</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+
+
+
+.messages {
+    position: relative;
+    z-index: 2;
+    width: min(92%, 700px);
+    margin: 0 auto;
+    padding: 35px 0 140px;
+}
+
+.messages h2 {
+    text-align: center;
+    color: var(--text-main);
+    margin-bottom: 6px;
+}
+
+.messages-intro {
+    text-align: center;
+    color: var(--text-soft);
+    font-size: 13px;
+    margin-bottom: 30px;
+}
+
+.message-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 22px 16px;
+    align-items: start;
+    padding: 10px 5px;
+}
+
+.message-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 18px;
+    padding: 20px 15px;
+    text-align: center;
+    color: var(--text-main);
+    box-shadow: 0 8px 25px rgba(88, 24, 37, 0.14);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.message-card:nth-child(1) {
+    transform: rotate(-2deg);
+}
+
+.message-card:nth-child(2) {
+    transform: rotate(2deg);
+}
+
+.message-card:nth-child(3) {
+    transform: rotate(1.5deg);
+}
+
+.message-card:nth-child(4) {
+    transform: rotate(-2.5deg);
+}
+
+.message-card:nth-child(5) {
+    transform: rotate(-1.5deg);
+}
+
+.message-card:nth-child(6) {
+    transform: rotate(2deg);
+}
+
+.message-card:hover {
+    transform: translateY(-5px) rotate(0deg);
+    box-shadow: 0 14px 30px rgba(88, 24, 37, 0.2);
+}
+
+.envelope img {
+    font-size: 42px;
+    margin-bottom: 8px;
+    width: 55px;
+
+}
+
+.message-card h3 {
+    color: var(--text-main);
+    font-family: 'Playfair Display', serif;
+    font-size: 17px;
+    margin: 7px 0;
+}
+
+.message-card p {
+    color: var(--text-soft);
+    font-size: 12px;
+    line-height: 1.5;
+    margin-bottom: 16px;
+}
+
+.open-message {
+    border: none;
+    border-radius: 16px;
+    padding: 9px 14px;
+    background: var(--button-bg);
+    color: var(--button-text);
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.open-message:hover {
+    background: var(--button-bg-hover);
+}
+
+.open-message:active {
+    transform: scale(0.94);
+}
+
+
+
+
+.send-message {
+    margin-top: 55px;
+    padding: 24px 18px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 22px;
+    box-shadow: 0 8px 25px rgba(88, 24, 37, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    text-align: center;
+}
+
+.send-message h3 {
+    color: var(--text-main);
+    font-family: 'Playfair Display', serif;
+    margin-bottom: 6px;
+}
+
+.send-message p {
+    color: var(--text-soft);
+    font-size: 12px;
+    margin-bottom: 18px;
+}
+
+.message-input {
+    width: 100%;
+    min-height: 130px;
+    box-sizing: border-box;
+    resize: vertical;
+    border: 1px solid var(--border-soft);
+    border-radius: 15px;
+    padding: 14px;
+    background: var(--input-bg);
+    color: var(--text-main);
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    outline: none;
+}
+
+.message-input::placeholder {
+    color: var(--text-soft);
+    opacity: 0.75;
+}
+
+.message-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.send-message-btn {
+    margin-top: 14px;
+    border: none;
+    border-radius: 18px;
+    padding: 10px 22px;
+    background: var(--button-bg);
+    color: var(--button-text);
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.send-message-btn:hover {
+    background: var(--button-bg-hover);
+}
+
+.send-message-btn:active {
+    transform: scale(0.94);
+}
+
+
+
+.send-message {
+    position: relative;
+    margin: 65px auto 0;
+    padding: 30px 20px 24px;
+    width: min(100%, 560px);
+    box-sizing: border-box;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    box-shadow: 0 12px 35px rgba(88, 24, 37, 0.16);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    text-align: center;
+    overflow: hidden;
+}
+
+.send-message::before {
+    
+    position: absolute;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 30px;
+    background: var(--card-bg);
+    padding: 3px 12px;
+    border-radius: 50%;
+}
+
+.send-message::after {
+    content: "✦";
+    position: absolute;
+    top: 18px;
+    right: 22px;
+    font-size: 16px;
+    color: var(--accent);
+    opacity: 0.7;
+}
+
+.send-message h3 {
+    color: var(--text-main);
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    margin: 8px 0 5px;
+}
+
+.send-message p {
+    color: var(--text-soft);
+    font-size: 12px;
+    line-height: 1.6;
+    margin: 0 auto 20px;
+    max-width: 350px;
+}
+
+.message-input {
+    display: block;
+    width: 100%;
+    min-height: 140px;
+    box-sizing: border-box;
+    resize: vertical;
+    border: 1px solid var(--border-soft);
+    border-radius: 18px;
+    padding: 15px;
+    background: var(--input-bg);
+    color: var(--text-main);
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    line-height: 1.6;
+    outline: none;
+    transition: border 0.25s ease, box-shadow 0.25s ease;
+}
+
+.message-input::placeholder {
+    color: var(--text-soft);
+    opacity: 0.65;
+}
+
+.message-input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.send-message-btn {
+    margin-top: 16px;
+    border: none;
+    border-radius: 20px;
+    padding: 11px 25px;
+    background: var(--button-bg);
+    color: var(--button-text);
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 6px 15px rgba(88, 24, 37, 0.18);
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.send-message-btn:hover {
+    background: var(--button-bg-hover);
+    transform: translateY(-2px);
+}
+
+.send-message-btn:active {
+    transform: scale(0.95);
+}
+
+
+.message-input-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.message-sticker {
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+    width: 55px;
+    height: 55px;
+    object-fit: contain;
+    pointer-events: none;
+    opacity: 0.85;
+    transform: rotate(-8deg);
+}
+
+.message-input {
+    padding-right: 75px;
+}
+
+.message-sent {
+    display: none;
+    position: relative;
+    margin: 65px auto 0;
+    padding: 35px 20px 28px;
+    width: min(100%, 560px);
+    box-sizing: border-box;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    box-shadow: 0 12px 35px rgba(88, 24, 37, 0.16);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    text-align: center;
+}
+
+.sent-heart {
+    width: 70px;
+    height: 70px;
+    object-fit: contain;
+    margin-bottom: 8px;
+}
+
+.message-sent h3 {
+    color: var(--text-main);
+    font-family: 'Playfair Display', serif;
+    font-size: 23px;
+    margin: 5px 0 8px;
+}
+
+.message-sent p {
+    color: var(--text-soft);
+    font-size: 13px;
+    line-height: 1.6;
+    margin-bottom: 20px;
+}
+
+.send-again-btn {
+    border: none;
+    border-radius: 20px;
+    padding: 10px 20px;
+    background: var(--button-bg);
+    color: var(--button-text);
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+}
+
+.send-again-btn:hover {
+    background: var(--button-bg-hover);
+    transform: translateY(-2px);
+}
+
+.send-again-btn:active {
+    transform: scale(0.95);
+}
+
+.opened-letter {
+    display: none;
+    position: relative;
+    margin: 30px auto 0;
+    padding: 25px 20px 30px;
+    width: min(100%, 560px);
+    box-sizing: border-box;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    box-shadow: 0 12px 35px rgba(88, 24, 37, 0.16);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    color: var(--text-main);
+}
+
+.back-letter-btn {
+    border: none;
+    background: transparent;
+    color: var(--text-soft);
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    cursor: pointer;
+    margin-bottom: 15px;
+}
+
+.opened-envelope {
+    display: block;
+    width: 65px;
+    height: 65px;
+    object-fit: contain;
+    margin: 0 auto 10px;
+}
+
+.opened-letter h3 {
+    text-align: center;
+    color: var(--text-main);
+    font-family: 'Playfair Display', serif;
+    font-size: 22px;
+    margin-bottom: 20px;
+}
+
+.letter-content {
+    color: var(--text-soft);
+    font-size: 13px;
+    line-height: 1.8;
+    text-align: left;
+}
+
+.letter-content p {
+    margin-bottom: 14px;
+}
+
+</style>
+</head>
+<body>
+
+    <button id="theme-toggle" class="theme-toggle">🌙</button>
+
+    <nav class="navbar">
+        <ul>
+            <li>
+                <a href="index.html" class="nav-item">
+                    <span>🏠</span>
+                    <span>Home</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="daily.html" class="nav-item">
+                    <span>🎁</span>
+                    <span>Daily</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="games.html" class="nav-item">
+                    <span>🎮</span>
+                    <span>Games</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="messages.html" class="nav-item active">
+                    <span>💌</span>
+                    <span>Messages</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+
+
+    
+      <div class="message-list">
+
+    <div class="message-card">
+        <div class="envelope">
+            <img src="image/enevelope.gif">
+        </div>
+        <h3>A Little Reminder</h3>
+        <p>Something I want you to remember.</p>
+        <button class="open-message" onclick="openMessage(1)">
+         Open Letter
+      </button>
+    </div>
+
+    <div class="message-card">
+        <div class="envelope">
+            <img src="image/enevelope.gif">
+        </div>
+        <h3>Things I Don't Say Enough</h3>
+        <p>Little things I appreciate about you.</p>
+       <button class="open-message" onclick="openMessage(2)">
+    Open Letter
+   </button>
+      </div>
+
+    <div class="message-card">
+        <div class="envelope">
+            <img src="image/enevelope.gif"></div>
+        <h3>For Your Quiet Days</h3>
+        <p>Open this whenever you just want something nice to read.</p>
+        <button class="open-message" onclick="openMessage(3)">
+    Open Letter
+   </button>
+  </div>
+
+    <div class="message-card">
+        <div class="envelope">
+            <img src="image/enevelope.gif">
+        </div>
+        <h3>Whatever Comes Next</h3>
+        <p>A few things I've always wanted to tell you.</p>
+       <button class="open-message" onclick="openMessage(4)">
+      Open Letter
+    </button>
+    </div>
+
+</div>
+
+<div class="opened-letter" id="opened-letter">
+
+    <button class="back-letter-btn" onclick="closeMessage()">
+        ← Back
+    </button>
+
+    <img
+        src="image/ccccuuuuuuuuuute.gif"
+        class="opened-envelope"
+        alt=""
+    >
+
+    <h3 id="letter-title">A Little Reminder</h3>
+
+    <div class="letter-content" id="letter-content">
+        
+    
+
+    </div>
+
+</div>
+
+  <form action="https://formspree.io/f/xnpnvyqo" method="POST" class="send-message" id="message-form">
+
+    <h3>Tell Me Something</h3>
+
+    <p>Is there something you want to tell me?</p>
+
+    <div class="message-input-wrapper">
+        <textarea
+            class="message-input"
+            name="message"
+            placeholder="Write something here..."
+            required
+        ></textarea>
+
+        <img
+            src="image/popororro.gif"
+            class="message-sticker"
+            alt=""
+        >
+    </div>
+
+    <input
+        type="hidden"
+        name="subject"
+        value="New Message"
+    >
+
+    <button type="submit" class="send-message-btn">
+        Send
+    </button>
+
+</form>
+
+<div class="message-sent" id="message-sent">
+
+    <img
+        src="image/mesaagaskiss.gif"
+        class="sent-heart"
+        alt=""
+    >
+
+    <h3>Message Sent!</h3>
+
+    <p>
+        Your message has been sent successfully. 💗
+    </p>
+
+    <button class="send-again-btn" type="button">
+        Send Another Message
+    </button>
+
+</div>
+
+    <script src="js/them.js"></script>
+    <script src="js/messages.js"></script>
+
+</body>
+</html>

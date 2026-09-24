@@ -1,0 +1,1391 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Games</title>
+
+ <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap">
+
+          <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="games.css">
+
+    <style>
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body.games-page {
+    padding: 15px 12px 100px;
+    overflow-x: hidden;
+}
+
+button {
+    font-family: inherit;
+}
+
+.games-container {
+    width: 100%;
+    max-width: 430px;
+    margin: 0 auto;
+}
+
+.games-header {
+    text-align: center;
+    margin: 5px 0 22px;
+}
+
+.small-title {
+    margin: 0 0 5px;
+    font-size: 8px;
+    letter-spacing: 2px;
+    opacity: 0.55;
+}
+
+.games-header h1 {
+    margin: 0;
+    font-size: 30px;
+    letter-spacing: 1px;
+}
+
+.games-header p {
+    margin: 5px 0 0;
+    font-size: 11px;
+    opacity: 0.65;
+}
+
+.game-section {
+    width: 100%;
+    padding: 14px;
+    margin-bottom: 22px;
+    border-radius: 19px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    box-shadow: 0 8px 25px rgba(88, 24, 37, 0.12);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    transition: background 0.5s ease, border 0.5s ease, box-shadow 0.5s ease;
+}
+
+.game-title {
+    text-align: center;
+    margin-bottom: 14px;
+}
+
+.game-number {
+    display: block;
+    margin-bottom: 4px;
+    font-size: 8px;
+    letter-spacing: 2px;
+    opacity: 0.5;
+}
+
+.game-title h2 {
+    margin: 0;
+    font-size: 21px;
+}
+
+.game-title p {
+    margin: 5px 0 0;
+    font-size: 10px;
+    opacity: 0.6;
+}
+
+.game-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    margin-bottom: 9px;
+}
+
+.info-box {
+    min-height: 45px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    background: rgba(0,0,0,0.08);
+    border: 1px solid var(--card-border);
+}
+
+body.dark-mode .info-box {
+    background: rgba(0,0,0,0.2);
+}
+
+.info-box span {
+    font-size: 8px;
+    opacity: 0.5;
+    margin-bottom: 2px;
+}
+
+.info-box strong {
+    font-size: 12px;
+}
+
+.location-info {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 9px 10px;
+    margin-bottom: 9px;
+    border-radius: 11px;
+    background: rgba(0,0,0,0.08);
+}
+
+body.dark-mode .location-info {
+    background: rgba(0,0,0,0.18);
+}
+
+.location-icon {
+    font-size: 22px;
+}
+
+.location-info div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.location-label {
+    font-size: 7px;
+    letter-spacing: 1.5px;
+    opacity: 0.5;
+}
+
+.location-name {
+    font-size: 11px;
+}
+
+.maze {
+    width: 100%;
+    max-width: 310px;
+    aspect-ratio: 1 / 1;
+    margin: 0 auto;
+    display: grid;
+    overflow: hidden;
+    border-radius: 11px;
+    border: 1px solid var(--card-border);
+    background: rgba(0,0,0,0.08);
+}
+
+body.dark-mode .maze {
+    background: rgba(0,0,0,0.18);
+}
+
+.cell {
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.cell.wall {
+    background: rgba(30,8,17,0.75);
+}
+
+body.dark-mode .cell.wall {
+    background: rgba(5,3,12,0.9);
+}
+
+.cell.path {
+    background: rgba(255,255,255,0.06);
+}
+
+.maze .play-screen {
+    grid-column: 1 / -1;
+    grid-row: 1 / -1;
+    width: 100%;
+    height: 100%;
+    min-height: 100%;
+}
+
+.maze-image {
+    width: 85%;
+    height: 85%;
+    object-fit: contain;
+    display: block;
+    pointer-events: none;
+    user-select: none;
+}
+
+.maze-image.player {
+    width: 90%;
+    height: 90%;
+}
+
+.maze-image.exit {
+    width: 82%;
+    height: 82%;
+}
+
+.maze-image.trap {
+    width: 82%;
+    height: 62%;
+}
+
+.maze-image.gem {
+    width: 78%;
+    height: 68%;
+}
+body.dark-mode .play-screen {
+    background: rgba(0,0,0,0.15);
+}
+
+.play-screen {
+    width: 100%;
+    min-height: 280px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: transparent;
+    border: none;
+}
+
+.play-icon {
+    font-size: 46px;
+    margin-bottom: 8px;
+}
+
+.play-screen h2 {
+    margin: 4px 0 7px;
+    font-size: 25px;
+}
+
+.play-screen p {
+    max-width: 250px;
+    margin: 0 0 20px;
+    font-size: 11px;
+    line-height: 1.5;
+    opacity: 0.65;
+}
+
+#play-button,
+#memory-play-button,
+#game-three-play {
+    border: none;
+    border-radius: 14px;
+    background: var(--button-bg);
+    color: var(--button-text);
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+#play-button {
+    padding: 11px 28px;
+    border-radius: 20px;
+}
+
+#memory-play-button,
+#game-three-play {
+    width: 140px;
+    height: 42px;
+}
+
+#play-button:hover,
+#memory-play-button:hover,
+#game-three-play:hover {
+    background: #7a2233;
+    transform: translateY(-2px);
+}
+
+body.dark-mode #play-button:hover,
+body.dark-mode #memory-play-button:hover,
+body.dark-mode #game-three-play:hover {
+    background: #e04b91;
+}
+
+#play-button:active,
+#memory-play-button:active,
+#game-three-play:active {
+    transform: scale(0.94);
+}
+
+.game-message {
+    min-height: 18px;
+    margin: 9px 0;
+    text-align: center;
+    font-size: 10px;
+    line-height: 1.4;
+    opacity: 0.75;
+}
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+    margin: 10px 0;
+}
+
+.middle-controls {
+    display: flex;
+    gap: 5px;
+}
+
+.control {
+    width: 40px;
+    height: 36px;
+    padding: 0;
+    border: none;
+    border-radius: 10px;
+    background: rgba(88,24,37,0.12);
+    color: var(--text-main);
+    cursor: pointer;
+    font-size: 13px;
+    transition: 0.15s ease;
+}
+
+body.dark-mode .control {
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+.control:hover {
+    background: rgba(88,24,37,0.2);
+}
+
+body.dark-mode .control:hover {
+    background: rgba(255,255,255,0.17);
+}
+
+.control:active {
+    transform: scale(0.9);
+}
+
+.game-buttons {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 5px;
+    margin-top: 10px;
+}
+
+.game-buttons button {
+    min-height: 36px;
+    padding: 5px;
+    border: none;
+    border-radius: 10px;
+    background: rgba(88,24,37,0.12);
+    color: var(--text-main);
+    font-size: 9px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+body.dark-mode .game-buttons button {
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+.game-buttons button:hover {
+    background: rgba(88,24,37,0.2);
+}
+
+body.dark-mode .game-buttons button:hover {
+    background: rgba(255,255,255,0.17);
+}
+
+.game-buttons button:active {
+    transform: scale(0.95);
+}
+
+.game-buttons button:disabled {
+    opacity: 0.28;
+    cursor: not-allowed;
+}
+
+
+.memory-board {
+    width: 100%;
+    max-width: 330px;
+    margin: 0 auto;
+    
+}
+
+.memory-board:has(.play-screen) {
+    display: block;
+}
+
+.memory-board:not(:has(.play-screen)) {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 8px;
+    align-items: center;
+    justify-items: center;
+}
+
+.memory-card {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    border: none;
+    padding: 0;
+    margin: 0;
+    background: transparent;
+    cursor: pointer;
+    perspective: 700px;
+}
+
+.memory-card-inner {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.4s ease;
+    transform-style: preserve-3d;
+}
+
+.memory-card.flipped .memory-card-inner,
+.memory-card.matched .memory-card-inner {
+    transform: rotateY(180deg);
+}
+
+.memory-card-front,
+.memory-card-back {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    overflow: hidden;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+}
+
+.memory-card-front {
+    background: linear-gradient(145deg,#7d344a,#4b1d2d);
+    border: 1px solid rgba(255,255,255,0.13);
+    font-size: 19px;
+}
+
+.memory-card-back {
+    transform: rotateY(180deg);
+    padding: 5px;
+    background: white;
+}
+
+.memory-card-back img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: 7px;
+}
+
+.memory-card.matched {
+    pointer-events: none;
+}
+
+.memory-card.matched .memory-card-back {
+    box-shadow: 0 0 0 2px rgba(255,180,200,0.6);
+}
+
+.modal {
+    position: fixed;
+    inset: 0;
+    z-index: 999999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    background: rgba(20,5,12,0.55);
+    backdrop-filter: blur(7px);
+    -webkit-backdrop-filter: blur(7px);
+}
+
+.modal.show {
+    display: flex;
+}
+
+.modal-content {
+    width: 100%;
+    max-width: 350px;
+    max-height: 78vh;
+    overflow-y: auto;
+    position: relative;
+    padding: 20px 15px;
+    border-radius: 18px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--text-main);
+    box-shadow: 0 12px 40px rgba(0,0,0,0.25);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+.modal-content h2 {
+    margin: 0 0 5px;
+    font-size: 20px;
+}
+
+.modal-content > p {
+    margin: 0 0 15px;
+    font-size: 10px;
+    opacity: 0.6;
+}
+
+.close-modal {
+    position: absolute;
+    top: 9px;
+    right: 10px;
+    width: 30px;
+    height: 30px;
+    border: none;
+    border-radius: 50%;
+    background: rgba(88,24,37,0.12);
+    color: var(--text-main);
+    font-size: 19px;
+    cursor: pointer;
+}
+
+body.dark-mode .close-modal {
+    background: rgba(255,255,255,0.1);
+    color: white;
+}
+
+.level-list {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 5px;
+}
+
+.level-item {
+    min-height: 54px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    border: none;
+    border-radius: 9px;
+    background: rgba(88,24,37,0.1);
+    color: var(--text-main);
+    cursor: pointer;
+}
+
+body.dark-mode .level-item {
+    background: rgba(255,255,255,0.08);
+    color: white;
+}
+
+.level-item strong {
+    font-size: 13px;
+}
+
+.level-item span {
+    font-size: 7px;
+    opacity: 0.6;
+}
+
+.level-item.completed {
+    background: rgba(130,70,95,0.65);
+}
+
+.level-item.current {
+    border: 1px solid rgba(255,190,210,0.65);
+}
+
+.level-item.locked {
+    opacity: 0.28;
+    cursor: not-allowed;
+}
+
+.confetti-container {
+    position: fixed;
+    inset: 0;
+    z-index: 9999999;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.confetti-piece {
+    position: absolute;
+    top: -15px;
+    border-radius: 2px;
+    background: #ff9fba;
+    animation: confetti-fall linear forwards;
+}
+
+.confetti-piece:nth-child(3n) {
+    background: #ffd1dc;
+}
+
+.confetti-piece:nth-child(3n + 1) {
+    background: #ffffff;
+}
+
+.confetti-piece:nth-child(4n) {
+    background: #e88da7;
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-15px) rotate(0deg);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translateY(110vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+@media (max-width: 360px) {
+    body.games-page {
+        padding: 12px 10px 95px;
+    }
+
+    .games-container {
+        max-width: 340px;
+    }
+
+    .game-section {
+        padding: 12px;
+    }
+
+    .games-header h1 {
+        font-size: 27px;
+    }
+
+    .game-title h2 {
+        font-size: 19px;
+    }
+
+    .maze,
+    .memory-board,
+    .game-three-area {
+        max-width: 285px;
+    }
+
+    .control {
+        width: 37px;
+        height: 34px;
+    }
+
+    .game-buttons button {
+        font-size: 8px;
+    }
+}
+
+#game-complete-popup {
+    position: fixed;
+    inset: 0;
+    z-index: 9999999;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(20, 5, 12, 0.5);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+}
+
+.complete-popup-box {
+    width: min(280px, 90%);
+    padding: 20px 16px;
+    border-radius: 18px;
+    text-align: center;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    color: var(--text-main);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+    animation: popupAppear 0.25s ease;
+}
+
+.complete-icon {
+    font-size: 30px;
+    margin-bottom: 5px;
+}
+
+.complete-popup-box h2 {
+    margin: 0;
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+}
+
+.complete-popup-box p {
+    margin: 7px 0 15px;
+    font-size: 10px;
+    line-height: 1.5;
+    opacity: 0.7;
+}
+
+.complete-popup-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 7px;
+}
+
+.complete-popup-buttons button {
+    min-width: 105px;
+    min-height: 36px;
+    padding: 7px 10px;
+    border: none;
+    border-radius: 11px;
+    background: var(--button-bg);
+    color: var(--button-text);
+    font-family: 'Poppins', sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.complete-popup-buttons button:hover {
+    transform: translateY(-2px);
+}
+
+.complete-popup-buttons button:active {
+    transform: scale(0.94);
+}
+
+@keyframes popupAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+.game-back {
+    display: block;
+    width: fit-content;
+    margin: 12px auto 0;
+    padding: 7px 13px;
+    border-radius: 10px;
+    background: rgba(88, 24, 37, 0.12);
+    border: 1px solid var(--card-border);
+    color: var(--text-main);
+    text-decoration: none;
+    font-size: 9px;
+    font-weight: 500;
+    transition: 0.2s ease;
+}
+
+.game-back:hover {
+    background: rgba(88, 24, 37, 0.2);
+    transform: translateY(-2px);
+}
+
+.game-back:active {
+    transform: scale(0.94);
+}
+
+body.dark-mode .game-back {
+    background: rgba(255, 255, 255, 0.08);
+    color: white;
+}
+
+body.dark-mode .game-back:hover {
+    background: rgba(255, 255, 255, 0.15);
+}
+
+
+    </style>
+
+</head>
+
+
+  <body class="games-page">
+
+
+   
+
+    <nav class="navbar">
+
+        <ul>
+
+            <li>
+                <a
+                    href="index.html"
+                    class="nav-item"
+                >
+                    <span>🏠</span>
+                    <span>Home</span>
+                </a>
+            </li>
+
+            <li>
+                <a
+                    href="daily.html"
+                    class="nav-item"
+                >
+                    <span>🎁</span>
+                    <span>Daily</span>
+                </a>
+            </li>
+
+            <li>
+                <a
+                    href="games.html"
+                    class="nav-item active"
+                >
+                    <span>🎮</span>
+                    <span>Games</span>
+                </a>
+            </li>
+
+            <li>
+                <a
+                    href="messages.html"
+                    class="nav-item"
+                >
+                    <span>💌</span>
+                    <span>Messages</span>
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+
+
+   
+
+    <main class="games-container">
+
+
+        
+
+        <header class="games-header">
+
+            <p class="small-title">
+                A LITTLE PLACE FOR YOU
+            </p>
+
+            <h1>
+                Games
+            </h1>
+
+            <p>
+                Play, explore, and unlock new levels.
+            </p>
+
+        </header>
+
+
+    
+
+        <section
+            class="game-section"
+            id="maze-game"
+        >
+
+            <div class="game-title">
+
+                <span class="game-number">
+                    GAME 01
+                </span>
+
+                <h2>
+                    Maze Adventure
+                </h2>
+
+                <p>
+                    Find your way to the exit.
+                </p>
+
+            </div>
+
+
+            <div class="game-info">
+
+                <div class="info-box">
+
+                    <span>
+                        Level
+                    </span>
+
+                    <strong id="level-number">
+                        1
+                    </strong>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <span>
+                        Time
+                    </span>
+
+                    <strong id="timer">
+                        00:00
+                    </strong>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <span>
+                        Best
+                    </span>
+
+                    <strong id="best-time">
+                        --:--
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div class="location-info">
+
+                <span
+                    id="location-icon"
+                    class="location-icon"
+                >
+                    🌲
+                </span>
+
+                <div>
+
+                    <span
+                        id="location-label"
+                        class="location-label"
+                    >
+                        THE FOREST
+                    </span>
+
+                    <strong id="location-name">
+                        Whispering Forest
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="maze"
+                class="maze"
+            ></div>
+
+
+            <p
+                id="game-message"
+                class="game-message"
+            >
+                Press Play when you're ready.
+            </p>
+
+
+            <div class="controls">
+
+                <button
+                    type="button"
+                    class="control up"
+                    data-direction="up"
+                >
+                    ▲
+                </button>
+
+
+                <div class="middle-controls">
+
+                    <button
+                        type="button"
+                        class="control"
+                        data-direction="left"
+                    >
+                        ◀
+                    </button>
+
+                    <button
+                        type="button"
+                        class="control"
+                        data-direction="down"
+                    >
+                        ▼
+                    </button>
+
+                    <button
+                        type="button"
+                        class="control"
+                        data-direction="right"
+                    >
+                        ▶
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <div class="game-buttons">
+
+                <button
+                    type="button"
+                    id="replay-btn"
+                >
+                    ↻ Replay
+                </button>
+
+                <button
+                    type="button"
+                    id="next-btn"
+                    disabled
+                >
+                    Next Level →
+                </button>
+
+                <button
+                    type="button"
+                    id="preview-btn"
+                >
+                    ☷ Preview
+                </button>
+
+            </div>
+
+  
+        </section>
+
+
+    
+
+        <section
+            class="game-section memory-section"
+            id="memory-game"
+        >
+
+            <div class="game-title">
+
+                <span class="game-number">
+                    GAME 02
+                </span>
+
+                <h2>
+                    Memory Match
+                </h2>
+
+                <p>
+                    Find all the matching pairs.
+                </p>
+
+            </div>
+
+
+            <div class="game-info">
+
+                <div class="info-box">
+
+                    <span>
+                        Level
+                    </span>
+
+                    <strong id="memory-level">
+                        1
+                    </strong>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <span>
+                        Moves
+                    </span>
+
+                    <strong id="memory-moves">
+                        0
+                    </strong>
+
+                </div>
+
+
+                <div class="info-box">
+
+                    <span>
+                        Best
+                    </span>
+
+                    <strong id="memory-best">
+                        --
+                    </strong>
+
+                </div>
+
+            </div>
+
+
+            <div
+                id="memory-board"
+                class="memory-board"
+            ></div>
+
+
+            <p
+                id="memory-message"
+                class="game-message"
+            >
+                Press Play when you're ready.
+            </p>
+
+
+            <div class="game-buttons">
+
+                <button
+                    type="button"
+                    id="memory-replay-btn"
+                >
+                    ↻ Replay
+                </button>
+
+                <button
+                    type="button"
+                    id="memory-next-btn"
+                    disabled
+                >
+                    Next Level →
+                </button>
+
+                <button
+                    type="button"
+                    id="memory-preview-btn"
+                >
+                    ☷ Preview
+                </button>
+
+            </div>
+
+            <a href="#games-top" class="game-back">
+        ← Back to Games
+    </a>
+        </section>
+
+
+      
+
+        <section
+            class="game-section game-three-section"
+            id="game-three"
+        >
+
+            <div class="game-title">
+
+                <span class="game-number">
+                    GAME 03
+                </span>
+
+                <h2>
+                    Coming Soon
+                </h2>
+
+                <p>
+                    A new challenge is waiting.
+                </p>
+
+            </div>
+
+
+            <div
+                id="game-three-area"
+                class="game-three-area"
+            >
+
+                <div class="play-screen">
+
+                    <div class="play-icon">
+                        🎮
+                    </div>
+
+                    <h2>
+                        Game 03
+                    </h2>
+
+                    <p>
+                        Get ready for the next adventure.
+                    </p>
+
+                    <button
+                        type="button"
+                        id="game-three-play"
+                    >
+                        ▶ Play
+                    </button>
+
+                </div>
+
+            </div>
+
+
+            <p
+                id="game-three-message"
+                class="game-message"
+            >
+                Your next challenge will appear here.
+            </p>
+
+
+            <div class="game-buttons">
+
+                <button
+                    type="button"
+                    id="game-three-replay"
+                >
+                    ↻ Replay
+                </button>
+
+                <button
+                    type="button"
+                    id="game-three-next"
+                    disabled
+                >
+                    Next Level →
+                </button>
+
+                <button
+                    type="button"
+                    id="game-three-preview"
+                >
+                    ☷ Preview
+                </button>
+
+            </div>
+<a href="#games-top" class="game-back">
+        ← Back to Games
+    </a>
+        </section>
+
+
+    </main>
+
+
+   
+
+    <div
+        id="preview-modal"
+        class="modal"
+    >
+
+        <div class="modal-content">
+
+            <button
+                type="button"
+                id="close-preview"
+                class="close-modal"
+            >
+                ×
+            </button>
+
+            <h2>
+                Maze Levels
+            </h2>
+
+            <p>
+                Complete a level to unlock the next one.
+            </p>
+
+            <div
+                id="level-list"
+                class="level-list"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+   
+    <div
+        id="memory-preview-modal"
+        class="modal"
+    >
+
+        <div class="modal-content">
+
+            <button
+                type="button"
+                id="memory-close-preview"
+                class="close-modal"
+            >
+                ×
+            </button>
+
+            <h2>
+                Memory Levels
+            </h2>
+
+            <p>
+                Complete a level to unlock the next one.
+            </p>
+
+            <div
+                id="memory-level-list"
+                class="level-list"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+
+    <div
+        id="game-three-preview-modal"
+        class="modal"
+    >
+
+        <div class="modal-content">
+
+            <button
+                type="button"
+                id="game-three-close-preview"
+                class="close-modal"
+            >
+                ×
+            </button>
+
+            <h2>
+                Game 03 Levels
+            </h2>
+
+            <p>
+                Complete a level to unlock the next one.
+            </p>
+
+            <div
+                id="game-three-level-list"
+                class="level-list"
+            ></div>
+
+        </div>
+
+    </div>
+
+
+    <script src="js/them.js"></script>
+    <script src="js/games.js"></script>
+
+
+</body>
+
+</html>

@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>A Little Place For You</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700&family=Poppins:wght@400;500;600&display=swap"
+        rel="stylesheet">
+
+    <style>
+
+      
+
+        * {
+            box-sizing: border-box;
+        }
+
+
+        body {
+
+            
+
+            font-family: 'Poppins', sans-serif;
+
+            margin: 0;
+
+            padding: 20px 16px 110px;
+
+            min-height: 100vh;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            color: #581825;
+        }
+
+
+        header,
+        main {
+
+            width: 100%;
+
+            max-width: 430px;
+        }
+
+
+        
+        .header-title {
+
+            text-align: center;
+
+            margin-top: 25px;
+
+            margin-bottom: 28px;
+        }
+
+
+        .header-icon {
+
+            font-size: 34px;
+
+            margin-bottom: 8px;
+
+            animation: float 3s ease-in-out infinite;
+        }
+
+
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    color: var(--text-main);
+    font-size: 29px;
+    line-height: 1.2;
+    margin: 0 0 8px;
+}
+
+
+        .header-title p {
+
+            color: #7a2233;
+
+            font-size: 13px;
+
+            margin: 0;
+
+            opacity: 0.8;
+        }
+
+
+     
+
+        .home {
+
+            text-align: center;
+        }
+
+
+       .home h2 {
+    font-family: 'Playfair Display', serif;
+    color: var(--text-main);
+    font-size: 25px;
+    margin: 0 0 5px;
+}
+
+.welcome-text {
+    color: var(--text-soft);
+    font-size: 13px;
+    margin: 0 0 22px;
+}
+
+
+
+     .card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    padding: 25px 20px;
+    border-radius: 24px;
+    box-shadow: 0 12px 30px rgba(88, 24, 37, 0.10);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 11px;
+    position: relative;
+    overflow: hidden;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+}
+
+
+        .card::before {
+
+            content: "";
+
+            position: absolute;
+
+            width: 120px;
+
+            height: 120px;
+
+            background: #ffe3e8;
+
+            border-radius: 50%;
+
+            top: -55px;
+
+            right: -45px;
+
+            opacity: 0.7;
+        }
+
+
+       .surprise-icon {
+    width: 64px;
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--soft-bg);
+    border-radius: 50%;
+    font-size: 31px;
+    margin-bottom: 3px;
+    position: relative;
+    z-index: 1;
+}
+
+
+    .card h3 {
+    font-family: 'Playfair Display', serif;
+    color: var(--text-main);
+    font-size: 21px;
+    margin: 0;
+    position: relative;
+}
+
+       .day-tag {
+       background: var(--button-bg);
+    color: var(--button-text);
+    font-weight: 600;
+    font-size: 11px;
+    padding: 5px 13px;
+    border-radius: 20px;
+}
+
+       .card-description {
+
+     color: #777;
+      font-size: 12px;
+      line-height: 1.5;
+       margin: 2px 10px 5px;
+        }
+
+        .surprise-btn {
+    background: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    padding: 13px 25px;
+    font-size: 13px;
+    font-weight: 600;
+    border-radius: 30px;
+    cursor: pointer;
+    box-shadow: 0 5px 15px rgba(88, 24, 37, 0.25);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+        .surprise-btn:hover {
+
+            background-color: #7a2233;
+
+            transform: translateY(-2px);
+        }
+
+
+        .surprise-btn:active {
+
+            transform: scale(0.96);
+        }
+
+
+
+        .quick-title {
+
+            font-family: 'Playfair Display', serif;
+
+            font-size: 19px;
+
+            text-align: left;
+
+            margin: 28px 2px 12px;
+
+            color: var(--text-main);
+        }
+
+
+        .quick-grid {
+
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 12px;
+        }
+
+
+.quick-card {
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    padding: 18px 14px;
+    text-decoration: none;
+    color: var(--text-main);
+    box-shadow: 0 7px 18px rgba(88, 24, 37, 0.07);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 7px;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+        .quick-card:hover {
+
+            transform: translateY(-3px);
+
+            background-color: rgb(183, 196, 207);
+        }
+
+
+        .quick-card:active {
+
+            transform: scale(0.96);
+        }
+
+
+        .quick-icon {
+
+            font-size: 27px;
+        }
+
+
+        .quick-card h3 {
+
+            font-family: 'Playfair Display', serif;
+
+            font-size: 16px;
+
+            margin: 0;
+        }
+
+
+  .quick-card p {
+    color: var(--text-soft);
+    font-size: 11px;
+    line-height: 1.4;
+    margin: 0;
+}
+
+
+.little-message {
+    margin-top: 15px;
+    padding: 19px 17px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    text-align: center;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+        .little-message span {
+
+            font-size: 20px;
+        }
+
+
+.little-message {
+    margin-top: 15px;
+    padding: 19px 17px;
+    background: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 20px;
+    text-align: center;
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+        
+
+        .home-footer {
+
+            text-align: center;
+
+            margin-top: 24px;
+
+            color: #8c5360;
+
+            font-size: 10px;
+
+            opacity: 0.8;
+        }
+
+
+       
+
+       
+.navbar {
+    background: var(--nav-bg);
+}
+
+.navbar ul {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+
+.navbar li {
+    flex: 1;
+    text-align: center;
+}
+
+.nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2px;
+    color: white !important;
+    text-decoration: none;
+    font-size: 10px;
+    font-weight: 500;
+    padding: 6px 3px;
+    border-radius: 16px;
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.nav-item:hover {
+    background: rgba(255,255,255,0.12);
+}
+
+.nav-item.active {
+    background: rgba(255,255,255,0.2);
+    color: white !important;
+}
+
+.nav-item:active {
+    transform: scale(0.92);
+}
+
+
+
+    </style>
+
+</head>
+
+
+<body>
+
+     <nav class="navbar">
+
+            <ul>
+
+                <li>
+
+                    <a href="index.html" class="nav-item active">
+
+                        <span>🏠</span>
+
+                        <span>Home</span>
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="daily.html" class="nav-item">
+
+                        <span>🎁</span>
+
+                        <span>Daily</span>
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="games.html" class="nav-item">
+
+                        <span>🎮</span>
+
+                        <span>Games</span>
+
+                    </a>
+
+                </li>
+
+
+                <li>
+
+                    <a href="messages.html" class="nav-item">
+
+                        <span>💌</span>
+
+                        <span>Messages</span>
+
+                    </a>
+
+                </li>
+
+            </ul>
+
+        </nav>
+
+    <header>
+
+        <div class="header-title">
+
+            <div class="header-icon">
+                💗
+            </div>
+
+            <h1>
+                A Little Place For You
+            </h1>
+
+        </div>
+
+    </header>
+
+
+    <main>
+
+
+        <section class="home">
+
+
+            <h2>
+                HI :)
+            </h2>
+
+
+            <p class="welcome-text">
+                I'm glad you're here.
+            </p>
+
+
+          
+
+            <div class="card">
+
+                <div class="surprise-icon">
+                    🎁
+                </div>
+
+
+                <h3>
+                    Today's Surprise
+                </h3>
+
+
+                <span class="day-tag" id="home-day-badge">✨ Day 1 ✨</span>
+ 
+
+                <p class="card-description">
+                    Come back every day and discover something new waiting for you.
+                </p>
+
+
+                <a href="daily.html" class="surprise-btn">
+                    SEE TODAY'S SURPRISE
+                </a>
+
+            </div>
+
+
+
+            <h3 class="quick-title">
+                Little Things For You ✨
+            </h3>
+
+
+            <div class="quick-grid">
+
+
+                <a href="games.html" class="quick-card">
+
+                    <span class="quick-icon">
+                        🎮
+                    </span>
+
+                    <h3>
+                        Mini Games
+                    </h3>
+
+                    <p>
+                        Play something when you're bored.
+                    </p>
+
+                </a>
+
+
+                <a href="messages.html" class="quick-card">
+
+                    <span class="quick-icon">
+                        💌
+                    </span>
+
+                    <h3>
+                        Messages
+                    </h3>
+
+                    <p>
+                        A few words I wanted you to see.
+                    </p>
+
+                </a>
+
+            </div>
+
+
+
+            <div class="little-message">
+
+                <span>
+                    🌷
+                </span>
+
+                <p>
+                    I hope this little place gives you
+                    something to smile about today.
+                </p>
+
+            </div>
+
+
+            <div class="home-footer">
+
+                ✨ Made with care, just for you ✨
+
+            </div>
+
+
+        </section>
+
+
+    </main>
+
+    <button id="theme-toggle" class="theme-toggle">
+    🌙
+</button>
+
+
+<script src="js/them.js"></script>
+<script src="js/home.js"></script>
+
+</body>
+
+</html>
