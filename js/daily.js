@@ -297,8 +297,7 @@ if (!startDate) {
 function getDayNumber() {
     const difference = today.getTime() - Number(startDate);
     const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-
-    return Math.min(days + 1, 30);
+    return days + 1;
 }
 
 function updateDayNumber() {
@@ -306,72 +305,18 @@ function updateDayNumber() {
     setFrontCardDay(selectedDay);
 }
 
-function createDayList() {
-    const dayList = document.getElementById("day-list");
-    if (!dayList) return;
-
-    dayList.innerHTML = "";
-    const currentDay = getDayNumber();
-
-    for (let i = 1; i <= 30; i++) {
-        const dayButton = document.createElement("button");
-        dayButton.classList.add("day-button");
-
-        if (i > currentDay) {
-            dayButton.classList.add("locked");
-            dayButton.textContent = "🔒 Day " + i;
-
-           dayButton.onclick = function () {
-    setFrontCardDay(i);
-};
-
-        } else {
-            dayButton.textContent = "Day " + i;
-
-            dayButton.onclick = function () {
-                setFrontCardDay(i);
-            };
-        }
-
-        dayList.appendChild(dayButton);
-    }
-}
-
 function setFrontCardDay(dayNum) {
-    const currentDay = getDayNumber();
+    selectedDay = dayNum;
+
+    const badge = document.getElementById("front-day-badge");
+    if (badge) {
+        badge.textContent = "✨ Day " + selectedDay + " ✨";
+    }
 
     const frontCard = document.getElementById("front-card");
     const revealedCard = document.getElementById("revealed-card");
-    const badge = document.getElementById("front-day-badge");
-
-    if (dayNum > currentDay) {
-        if (frontCard && revealedCard) {
-            frontCard.classList.remove("hidden");
-            revealedCard.classList.add("hidden");
-
-            frontCard.innerHTML = `
-                <div class="icon">🔒</div>
-                <h3>Not Yet... 💗</h3>
-                <span class="day-badge">🔒 Day ${dayNum} 🔒</span>
-                <p>You can't open this surprise yet.</p>
-                <p>Come back tomorrow ✨</p>
-            `;
-        }
-
-        return;
-    }
-
-    selectedDay = dayNum;
 
     if (frontCard && revealedCard) {
-        frontCard.innerHTML = `
-            <div class="icon">🎁</div>
-            <h3>Today's Surprise</h3>
-            <span class="day-badge" id="front-day-badge">✨ Day ${selectedDay} ✨</span>
-            <p>Something is waiting for you...</p>
-            <button class="reveal-btn" onclick="revealSurprise()">REVEAL</button>
-        `;
-
         frontCard.classList.remove("hidden");
         revealedCard.classList.add("hidden");
 
@@ -380,6 +325,7 @@ function setFrontCardDay(dayNum) {
         frontCard.classList.add("animate-reveal");
     }
 }
+
 function goBackToFront() {
     const frontCard = document.getElementById("front-card");
     const revealedCard = document.getElementById("revealed-card");
@@ -836,19 +782,19 @@ function renderSurpriseContent(surprise, dayNum) {
 
                         if (matchedPairs === 3) {
                             let feedback = totalFlips <= 4 
-                                ? "🔥Ang masasabi ko lang ay SHESSSH"
+                                ? "🔥 PERFECT MEMORY! Sisiw lang sa'yo ah! ❤️" 
                                 : "👏 Ang galing! Nahulaan mo lahat ng pares! 🌸";
 
                             resultDiv.innerHTML = `
                                 <div style="font-size: 15px; font-weight: 700; color: #2b9348; margin-top: 8px;">
-                                    Yiee panalo sya.
+                                    🎉 Panalo ka!
                                 </div>
                                 <div style="font-size: 12px; margin-top: 4px;">${feedback}</div>
                             `;
                             createConfetti();
                         }
                     } else {
-                      
+                        // Mismatch - itataob ulit pagkaraan ng 0.8s
                         setTimeout(() => {
                             card1.classList.remove("flipped");
                             card2.classList.remove("flipped");
@@ -956,13 +902,13 @@ function renderSurpriseContent(surprise, dayNum) {
 
                     let feedback = "";
                     if (score >= 12) {
-                        feedback = "🔥 SOBRANG BILIS! papa SHeshh";
+                        feedback = "🔥 SOBRANG BILIS! Ang talas ng reflexes mo madam! ❤️";
                         createConfetti();
                     } else if (score >= 6) {
-                        feedback = "👏 Magaling! Galing, Lupit, idol pakiss";
+                        feedback = "👏 Magaling! Marami ka ring natapik! 🌸";
                         createConfetti();
                     } else {
-                        feedback = "ANoo yann? AHHAHHAHA, let's try again";
+                        feedback = "😜 Bitin! Bagalan mo mag-isip, bilisan mo mag-tap! HAHAHA!";
                     }
 
                     resultDiv.innerHTML = `Game Over! Score: <b>${score}</b><br><span style="font-size: 12px; font-weight: 500;">${feedback}</span>`;
@@ -2142,7 +2088,7 @@ function createDayList() {
             };
         } else {
             const isFutureDay = i > currentDay;
-            dayButton.textContent = isFutureDay ? " Day " + i : "Day " + i;
+            dayButton.textContent = isFutureDay ? "👁️ Day " + i : "Day " + i;
 
             dayButton.onclick = function () {
                 setFrontCardDay(i);
