@@ -296,7 +296,7 @@ function getDayNumber() {
     const difference = today.getTime() - Number(startDate);
     const days = Math.floor(difference / (1000 * 60 * 60 * 24));
 
-     return Math.min(days + 1, 30);
+    return Math.min(days + 1, 30);
 }
 
 function updateDayNumber() {
@@ -304,18 +304,72 @@ function updateDayNumber() {
     setFrontCardDay(selectedDay);
 }
 
-function setFrontCardDay(dayNum) {
-    selectedDay = dayNum;
+function createDayList() {
+    const dayList = document.getElementById("day-list");
+    if (!dayList) return;
 
-    const badge = document.getElementById("front-day-badge");
-    if (badge) {
-        badge.textContent = "Day " + selectedDay + " ";
+    dayList.innerHTML = "";
+    const currentDay = getDayNumber();
+
+    for (let i = 1; i <= 30; i++) {
+        const dayButton = document.createElement("button");
+        dayButton.classList.add("day-button");
+
+        if (i > currentDay) {
+            dayButton.classList.add("locked");
+            dayButton.textContent = "🔒 Day " + i;
+
+           dayButton.onclick = function () {
+    setFrontCardDay(i);
+};
+
+        } else {
+            dayButton.textContent = "Day " + i;
+
+            dayButton.onclick = function () {
+                setFrontCardDay(i);
+            };
+        }
+
+        dayList.appendChild(dayButton);
     }
+}
+
+function setFrontCardDay(dayNum) {
+    const currentDay = getDayNumber();
 
     const frontCard = document.getElementById("front-card");
     const revealedCard = document.getElementById("revealed-card");
+    const badge = document.getElementById("front-day-badge");
+
+    if (dayNum > currentDay) {
+        if (frontCard && revealedCard) {
+            frontCard.classList.remove("hidden");
+            revealedCard.classList.add("hidden");
+
+            frontCard.innerHTML = `
+                <div class="icon">🔒</div>
+                <h3>Not Yet... 💗</h3>
+                <span class="day-badge">🔒 Day ${dayNum} 🔒</span>
+                <p>You can't open this surprise yet.</p>
+                <p>Come back tomorrow ✨</p>
+            `;
+        }
+
+        return;
+    }
+
+    selectedDay = dayNum;
 
     if (frontCard && revealedCard) {
+        frontCard.innerHTML = `
+            <div class="icon">🎁</div>
+            <h3>Today's Surprise</h3>
+            <span class="day-badge" id="front-day-badge"> Day ${selectedDay} ✨</span>
+            <p>Something is waiting for you...</p>
+            <button class="reveal-btn" onclick="revealSurprise()">REVEAL</button>
+        `;
+
         frontCard.classList.remove("hidden");
         revealedCard.classList.add("hidden");
 
