@@ -1,47 +1,45 @@
-const CACHE_NAME = "lumi-v1";
+const CACHE_NAME = "lumi-v2";
+
 const FILES_TO_CACHE = [
-  "./",
-  "./index.html",
-  "./style.css",
-  "./js/home.js",
-  "./manifest.json",
-  "./icon-192.png",
-  "./icon-512.png"
+    "./",
+    "./index.html",
+    "./style.css",
+    "./js/home.js",
+    "./manifest.json",
+    "./icon-192.png",
+    "./icon-512.png"
 ];
 
-
-self.addEventListener("install", e => {
-  e.waitUntil(
-    caches.open(CACHE_NAME).then(cache => {
-      console.log("Caching app shell");
-      return cache.addAll(FILES_TO_CACHE);
-    })
-  );
-  self.skipWaiting();
-});
-
-
-self.addEventListener("activate", e => {
-  e.waitUntil(
-    caches.keys().then(keys => 
-      Promise.all(keys.map(key => key !== CACHE_NAME && caches.delete(key)))
-    )
-  );
-  self.clients.claim();
-});
-
-
-self.addEventListener("fetch", e => {
-  e.respondWith(
-    fetch(e.request)
-      .then(res => {
-
-        const resClone = res.clone();
+self.addEventListener("install", event => {
+    event.waitUntil(
         caches.open(CACHE_NAME).then(cache => {
-          cache.put(e.request, resClone);
-        });
-        return res;
-      })
-      .catch(() => caches.match(e.request))
-  );
+            return cache.addAll(FILES_TO_CACHE);
+        })
+    );
+
+    self.skipWaiting();
+});
+
+self.addEventListener("activate", event => {
+    event.waitUntil(
+        caches.keys().then(keys => {
+            return Promise.all(
+                keys.map(key => {
+                    if (key !== CACHE_NAME) {
+                        return caches.delete(key);
+                    }
+                })
+            );
+        })
+    );
+
+    self.clients.claim();
+});
+
+self.addEventListener("fetch", event => {
+    event.respondWith(
+        caches.match(event.request).then(cachedResponse => {
+            return cachedResponse || fetch(event.request);
+        })
+    );
 });
