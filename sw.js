@@ -1,8 +1,9 @@
-const CACHE_NAME = "lumi-v3"; 
+const CACHE_NAME = "lumi-v1";
 const FILES_TO_CACHE = [
   "./",
   "./index.html",
-  "./home.js",
+  "./style.css",
+  "./js/home.js",
   "./manifest.json",
   "./icon-192.png",
   "./icon-512.png"
@@ -11,7 +12,10 @@ const FILES_TO_CACHE = [
 
 self.addEventListener("install", e => {
   e.waitUntil(
-    caches.open(CACHE_NAME).then(cache => cache.addAll(FILES_TO_CACHE))
+    caches.open(CACHE_NAME).then(cache => {
+      console.log("Caching app shell");
+      return cache.addAll(FILES_TO_CACHE);
+    })
   );
   self.skipWaiting();
 });
@@ -29,6 +33,15 @@ self.addEventListener("activate", e => {
 
 self.addEventListener("fetch", e => {
   e.respondWith(
-    fetch(e.request).catch(() => caches.match(e.request))
+    fetch(e.request)
+      .then(res => {
+
+        const resClone = res.clone();
+        caches.open(CACHE_NAME).then(cache => {
+          cache.put(e.request, resClone);
+        });
+        return res;
+      })
+      .catch(() => caches.match(e.request))
   );
 });
