@@ -182,7 +182,22 @@ const surprises = [
         content: "Kuskusin mo ang card gamit ang daliri o cursor mo para ma-reveal ang iyong voucher secret prize!"
     },
 
-   
+    {
+        type: "question",
+        title: "Future Bucket List",
+        icon: "✈️",
+        content: "If we could travel anywhere tomorrow for free, saan mo gustong pumunta kasama ako at bakit?",
+        formspreeUrl: "https://formspree.io/f/xoeveljv"
+    },
+    
+    {
+        type: "fortune",
+        title: "Love Fortune Cookie",
+        icon: "🥠",
+        fortuneMessage: "🔮 Sabi ng kapalaran: Tatanda daw tayo ng mag kasama unti-unti natin na aabot ang mga pangarap natin at mamumuhay tayo ng payapa, at ititira kita sa bahay ng walang sigawan 😘",
+        content: "Basagin mo ang fortune cookie para malaman ang kapalaran ng love life natin ngayong araw!"
+    },
+    
     {
         type: "coupon",
         title: "Special Love Pass",
@@ -192,24 +207,6 @@ const surprises = [
         description: "After all, you deserve it naman so, lilibre kita kahit ano. kasi nakakhiya naman sayo po buseng ko, joke hehe",
         content: "May nakuha kang special voucher coupon ngayong araw!"
     },
-
-    {
-        type: "question",
-        title: "Future Bucket List",
-        icon: "✈️",
-        content: "If we could travel anywhere tomorrow for free, saan mo gustong pumunta kasama ako at bakit?",
-        formspreeUrl: "https://formspree.io/f/xoeveljv"
-    },
-   
-  
-    {
-        type: "fortune",
-        title: "Love Fortune Cookie",
-        icon: "🥠",
-        fortuneMessage: "🔮 Sabi ng kapalaran: Tatanda daw tayo ng mag kasama unti-unti natin na aabot ang mga pangarap natin at mamumuhay tayo ng payapa, at ititira kita sa bahay ng walang sigawan 😘",
-        content: "Basagin mo ang fortune cookie para malaman ang kapalaran ng love life natin ngayong araw!"
-    },
-
 
 
     {
