@@ -1690,7 +1690,7 @@ function handleQuizChoice(selectedIndex, correctAnswer, revealMessage) {
     }
 }
 
-const PREVIEW_MODE = true;
+const PREVIEW_MODE = false;
 
 function createDayList() {
     const dayList = document.getElementById("day-list");
@@ -1705,14 +1705,12 @@ function createDayList() {
 
         if (!PREVIEW_MODE && i > currentDay) {
             dayButton.classList.add("locked");
-            dayButton.textContent = "🔒 Day " + i;
 
-            dayButton.onclick = function () {
-                alert("Naka-lock pa ito! Balikan mo sa Day " + i + " ✨");
-            };
+            dayButton.innerHTML =
+                '<span class="custom-lock"></span>Day ' + i;
+
         } else {
-            const isFutureDay = i > currentDay;
-            dayButton.textContent = isFutureDay ? "👁️ Day " + i : "Day " + i;
+            dayButton.textContent = "Day " + i;
 
             dayButton.onclick = function () {
                 setFrontCardDay(i);
