@@ -114,7 +114,7 @@ const surprises = [
         song: "kursunada",
         artist: "Adie",
         image: "image/kursunda.jpg",
-        music: "song/kursunada.mp3",
+        music: "adie.mp3",
         content: "Pinapanalangin ka palaging mapa-sa'kin Hihintayin ang mga pangitaing"
     },
 
