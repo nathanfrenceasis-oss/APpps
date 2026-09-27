@@ -1801,6 +1801,29 @@ main {
     color: var(--button-text);
 }
 
+    .custom-lock {
+    width: 12px;
+    height: 10px;
+    background: #581825;
+    border-radius: 2px;
+    display: inline-block;
+    position: relative;
+    margin-right: 7px;
+    top: 1px;
+}
+
+.custom-lock::before {
+    content: "";
+    position: absolute;
+    width: 7px;
+    height: 7px;
+    border: 2px solid #581825;
+    border-bottom: none;
+    border-radius: 7px 7px 0 0;
+    left: 1px;
+    top: -7px;
+}
+    
 </style>
 </head>
 
