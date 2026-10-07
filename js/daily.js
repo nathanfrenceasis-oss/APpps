@@ -97,7 +97,7 @@ const surprises = [
         type: "letter",
         title: "Daily Affirmation",
         icon: "🌸",
-        content: "Proud na proud ako sayo sa lahat ng ginagawa mo. Kakayanin natin lahat ng pangarap natin nang magkasama!"
+        content: "Proud na proud ako sayo sa lahat ng ginagawa mo. Kakayanin natin lahat para maabot yung mga pangarap natin nang magkasama!"
     },
 
     {
